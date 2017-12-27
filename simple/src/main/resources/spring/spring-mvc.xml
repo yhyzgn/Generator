@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:property-placeholder ignore-unresolvable="true" location="classpath:application.properties"/>
+
+    <context:component-scan base-package="com.yhy.generator.simple"/>
+
+    <!--REST中根据URL后缀自动判定Content-Type及相应的View-->
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="mediaTypes">
+            <map>
+                <entry key="json" value="application/json"/>
+                <entry key="xml" value="application/xml"/>
+            </map>
+        </property>
+        <property name="ignoreAcceptHeader" value="true"/>
+        <property name="favorPathExtension" value="true"/>
+    </bean>
+
+    <!--使用注解驱动-->
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
+        <mvc:message-converters>
+            <!--将StringHttpMessageConverter的默认编码设为UTF-8-->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8"/>
+            </bean>
+            <!--将Jackson2HttpMessageConverter的默认格式化输出为false-->
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <!--将contentType改为text/html，避免IE响应JSON（contentType=application/json）时出现下载文件-->
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                    </list>
+                </property>
+                <property name="prettyPrint" value="false"/>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!--前端视图解析器，解析jsp时默认使用jstl标签-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--配置视图前后缀-->
+        <property name="prefix"
+                  value="${web.view.prefix}"/>
+        <property name="suffix"
+                  value="${web.view.suffix}"/>
+    </bean>
+
+    <!--对静态资源的拦截，将无法映射到controller的path交给default servlet handler处理-->
+    <mvc:default-servlet-handler/>
+
+    <!--静态资源的映射-->
+    <mvc:resources mapping="/statics/**" location="/statics/" cache-period="${static.cache.period}"/>
+
+    <!--定义无Controller的path，view直接映射-->
+    <mvc:view-controller path="/" view-name="redirect:/"/>
+</beans>
