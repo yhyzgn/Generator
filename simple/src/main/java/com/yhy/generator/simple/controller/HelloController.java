@@ -42,14 +42,14 @@ public class HelloController {
     @RequestMapping("tables")
     @ResponseBody
     public List<Table> tables() {
-        return new TableLoader().load();
+        return new TableLoader().allTableList();
     }
 
     @RequestMapping("xml")
     @ResponseBody
     public String xml() {
-        MapperXmlGenerator generator = new MapperXmlGenerator("sm_user");
-        generator.generate(null);
+        MapperXmlGenerator generator = new MapperXmlGenerator(tables().get(0));
+        generator.generate();
         return "哈哈";
     }
 

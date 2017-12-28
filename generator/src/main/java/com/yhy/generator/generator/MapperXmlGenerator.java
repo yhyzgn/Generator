@@ -1,7 +1,9 @@
 package com.yhy.generator.generator;
 
-import com.yhy.generator.core.xml.XmlFile;
+import com.yhy.generator.core.file.XmlFile;
 import com.yhy.generator.generator.base.Generator;
+import com.yhy.generator.helper.FileWriter;
+import com.yhy.generator.model.table.Table;
 
 /**
  * author : 颜洪毅
@@ -12,8 +14,8 @@ import com.yhy.generator.generator.base.Generator;
  */
 public class MapperXmlGenerator extends Generator<XmlFile> {
 
-    public MapperXmlGenerator(String tableName) {
-        super(tableName);
+    public MapperXmlGenerator(Table table) {
+        super(table);
     }
 
     @Override
@@ -22,8 +24,14 @@ public class MapperXmlGenerator extends Generator<XmlFile> {
     }
 
     @Override
-    public void generate(XmlFile file) {
-        String dir = getPath();
-        LOGGER.info("\n=================================================\n" + dir + "\n=================================================");
+    public void generate() {
+        FileWriter<XmlFile> writer = new FileWriter<>(this, genXml());
+        writer.write();
+    }
+
+    private XmlFile genXml() {
+        XmlFile xmlFile = new XmlFile();
+
+        return xmlFile;
     }
 }

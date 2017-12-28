@@ -1,4 +1,7 @@
-package com.yhy.generator.core.xml;
+package com.yhy.generator.core.file;
+
+import com.yhy.generator.core.file.abs.AbsFile;
+import com.yhy.generator.core.xml.Element;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +13,7 @@ import java.util.List;
  * version: 1.0.0
  * desc   :
  */
-public class XmlFile {
+public class XmlFile implements AbsFile {
     private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
     private static final String DOC_TYPE = "<!DOCTYPE mapper PUBLIC \"-//mybatis.org//DTD Mapper 3.0//EN\" \"http://mybatis.org/dtd/mybatis-3-mapper.dtd\">";
     private List<Element> elementList;
@@ -44,7 +47,7 @@ public class XmlFile {
 
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append(XML_HEADER).append(System.getProperty("line.separator")).append(DOC_TYPE).append(System.getProperty("line.separator"));
         if (null != elementList && !elementList.isEmpty()) {
             for (Element element : elementList) {

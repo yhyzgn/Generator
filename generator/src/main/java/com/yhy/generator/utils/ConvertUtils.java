@@ -17,11 +17,28 @@ public class ConvertUtils {
     }
 
     public static String line2Hump(String line) {
+        if (StringUtils.isEmpty(line)) {
+            return line;
+        }
         Pattern linePattern = Pattern.compile("(-|_)(\\w)");
         Matcher matcher = linePattern.matcher(line);
         StringBuffer sb = new StringBuffer();
         while (matcher.find()) {
             matcher.appendReplacement(sb, matcher.group(2).toUpperCase());
+        }
+        matcher.appendTail(sb);
+        return sb.toString();
+    }
+
+    public static String caseFirstCharUpper(String original) {
+        if (StringUtils.isEmpty(original)) {
+            return original;
+        }
+        Pattern linePattern = Pattern.compile("^(\\w)");
+        Matcher matcher = linePattern.matcher(original);
+        StringBuffer sb = new StringBuffer();
+        if (matcher.find()) {
+            matcher.appendReplacement(sb, matcher.group(1).toUpperCase());
         }
         matcher.appendTail(sb);
         return sb.toString();

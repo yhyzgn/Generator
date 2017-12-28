@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class TableLoader {
 
-    public List<Table> load() {
+    public List<Table> allTableList() {
         TableApi api = new TableApi();
 
         List<TableInfo> infoList = api.loadTableInfoList();

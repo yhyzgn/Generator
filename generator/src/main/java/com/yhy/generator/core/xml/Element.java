@@ -72,27 +72,48 @@ public class Element {
 
     @Override
     public String toString() {
-        return createElement(this);
+        String indent = "";
+        return createElement(this, indent);
     }
 
-    private String createElement(Element element) {
-        StringBuffer sb = new StringBuffer();
-
-        sb.append("<").append(element.getName());
+    private String createElement(Element element, String indent) {
+        // 生成头标签
+        StringBuilder sb = new StringBuilder();
+        sb.append(indent).append("<").append(element.getName());
         if (null != element.getAttributes() && !element.getAttributes().isEmpty()) {
             for (Attribute attr : element.getAttributes()) {
                 sb.append(" ").append(attr.getName()).append("=\"").append(attr.getValue()).append("\"");
             }
         }
-        sb.append(">").append(System.getProperty("line.separator"));
 
-        if (StringUtils.isNotEmpty(element.getContent())) {
-            sb.append("\t").append(element.getContent()).append(System.getProperty("line.separator"));
-        } else if (null != element.getElements() && !element.getElements().isEmpty()) {
-
+        if (null != element.getElements() && !element.getElements().isEmpty()) {
+            // 如果有子节点，就递归生成子节点
+            // 头标签结束符
+            sb.append(">");
+            // 循环递归生成子节点
+            for (int i = 0; i < element.getElements().size(); i++) {
+                if (i < element.getElements().size() - 1) {
+                    sb.append(System.getProperty("line.separator"));
+                }
+                sb.append(createElement(element.getElements().get(i), indent + "\t"));
+            }
+            // 生成尾标签
+            sb.append(indent).append("</").append(element.getName()).append(">");
+        } else if (StringUtils.isNotEmpty(element.getContent())) {
+            // 如果有文本内容，就添加文本内容
+            // 头标签结束符
+            sb.append(">");
+            // 生成文本
+            sb.append(System.getProperty("line.separator")).append(indent).append("\t").append(element.getContent()).append(System.getProperty("line.separator"));
+            // 生成尾标签
+            sb.append(indent).append("</").append(element.getName()).append(">");
+        } else {
+            // 如果没有子节点也没有文本内容，就把当前标签设置为单标签
+            sb.append("/>");
         }
-        sb.append("</").append(element.getName()).append(">");
-
+        if (element.hashCode() != this.hashCode()) {
+            sb.append(System.getProperty("line.separator"));
+        }
         return sb.toString();
     }
 }

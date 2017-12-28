@@ -1,6 +1,9 @@
 package com.yhy.generator.generator.base;
 
 import com.yhy.generator.common.Const;
+import com.yhy.generator.core.file.abs.AbsFile;
+import com.yhy.generator.model.table.Table;
+import com.yhy.generator.utils.ConvertUtils;
 import com.yhy.generator.utils.PropUtils;
 import com.yhy.generator.utils.StringUtils;
 import org.slf4j.Logger;
@@ -15,16 +18,18 @@ import java.util.Locale;
  * version: 1.0.0
  * desc   :
  */
-public abstract class Generator<T> {
+public abstract class Generator<T extends AbsFile> {
     protected static final Logger LOGGER = LoggerFactory.getLogger(Generator.class);
 
-    private String tableName;
-    private FileType fileType;
-    private String baseDir;
-    private String tableDir;
+    protected Table table;
+    protected FileType fileType;
+    protected String baseDir;
+    protected String tableDir;
+    protected String packageName;
+    protected String modelName;
 
-    public Generator(String tableName) {
-        this.tableName = tableName;
+    public Generator(Table table) {
+        this.table = table;
         fileType = fileType();
         if (null == fileType) {
             fileType = FileType.MAPPER_XML;
@@ -36,17 +41,17 @@ public abstract class Generator<T> {
 
     protected abstract FileType fileType();
 
-    public abstract void generate(T file);
+    public abstract void generate();
 
-    private String getBaseDir() {
+    public String getBaseDir() {
         return baseDir;
     }
 
-    private String getTableDir() {
+    public String getTableDir() {
         return tableDir;
     }
 
-    private String getRoot() {
+    public String getRoot() {
         String root = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_PROJECT_ROOT);
         if (StringUtils.isEmpty(root)) {
             root = "/";
@@ -57,8 +62,44 @@ public abstract class Generator<T> {
         return root;
     }
 
-    public String getPath() {
-        return getRoot() + getBaseDir() + getTableDir();
+    public String getModelFileName() {
+        return modelName + ".java";
+    }
+
+    public String getModelName() {
+        return modelName;
+    }
+
+    public String getMapperXmlFileName() {
+        return modelName + "Mapper.xml";
+    }
+
+    public String getMapperXmlName() {
+        return modelName + "Mapper";
+    }
+
+    public String getMapperFileName() {
+        return modelName + "Mapper.java";
+    }
+
+    public String getMapperName() {
+        return modelName + "Mapper";
+    }
+
+    public String getServiceFileName() {
+        return modelName + "Service.java";
+    }
+
+    public String getServiceName() {
+        return modelName + "Service";
+    }
+
+    public String getPackageName() {
+        return packageName;
+    }
+
+    public FileType getFileType() {
+        return fileType;
     }
 
     private void tableDir() {
@@ -70,27 +111,34 @@ public abstract class Generator<T> {
         if (null == tableDirReplace) {
             tableDirReplace = "";
         }
-        tableDir = tableName.replaceAll(tableDirRule, tableDirReplace).toLowerCase(Locale.getDefault()) + "/";
+        tableDir = table.getInfo().getName().replaceAll(tableDirRule, tableDirReplace).toLowerCase(Locale.getDefault());
+        modelName(tableDir);
+        tableDir += "/";
+    }
+
+    private void modelName(String tableDir) {
+        if (StringUtils.isNotEmpty(tableDir)) {
+            modelName = ConvertUtils.caseFirstCharUpper(tableDir);
+        }
     }
 
     private void baseDir() {
-        String subDir;
         switch (fileType) {
+            case MODEL:
+                packageName = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_MODEL_PACKAGE);
+                baseDir = Const.DIR_BASE_JAVA + normalizeDir(packageName);
+                break;
             case MAPPER_XML:
-                subDir = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_MAPPER_XML_DIR);
+                String subDir = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_MAPPER_XML_DIR);
                 baseDir = Const.DIR_BASE_RESOURCES + normalizeDir(subDir);
                 break;
             case MAPPER_JAVA:
-                subDir = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_MAPPER_PACKAGE);
-                baseDir = Const.DIR_BASE_JAVA + normalizeDir(subDir);
-                break;
-            case MODEL:
-                subDir = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_MODEL_PACKAGE);
-                baseDir = Const.DIR_BASE_JAVA + normalizeDir(subDir);
+                packageName = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_MAPPER_PACKAGE);
+                baseDir = Const.DIR_BASE_JAVA + normalizeDir(packageName);
                 break;
             case SERVICE:
-                subDir = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_SERVICE_PACKAGE);
-                baseDir = Const.DIR_BASE_JAVA + normalizeDir(subDir);
+                packageName = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_SERVICE_PACKAGE);
+                baseDir = Const.DIR_BASE_JAVA + normalizeDir(packageName);
                 break;
         }
     }
