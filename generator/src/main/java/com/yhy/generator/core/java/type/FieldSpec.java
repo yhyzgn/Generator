@@ -125,7 +125,7 @@ public class FieldSpec {
         }
         if (null != annoSpecList && !annoSpecList.isEmpty()) {
             for (AnnoSpec anno : annoSpecList) {
-                sb.append("\t").append(anno.toString());
+                sb.append("\t").append(anno.toString()).append(lineSeparator);
             }
         }
         sb.append("\t");

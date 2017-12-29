@@ -5,7 +5,6 @@ import com.yhy.generator.core.java.type.ImportSpec;
 import com.yhy.generator.core.java.type.TypeSpec;
 import com.yhy.generator.utils.StringUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -60,7 +59,7 @@ public class JavaFile implements AbsFile {
 
         sb.append("package ").append(packageName).append(";").append(lineSeparator).append(lineSeparator);
 
-        List<Class<?>> classList = typeSpec.getClassList();
+        List<Class<?>> classList = typeSpec.getUsedClassList();
         if (null != classList) {
             for (Class<?> clazz : classList) {
                 if (!StringUtils.equals("java.lang", clazz.getPackage().getName()) && !StringUtils.equals(packageName, clazz.getPackage().getName())) {

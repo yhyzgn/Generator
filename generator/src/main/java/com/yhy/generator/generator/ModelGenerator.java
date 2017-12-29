@@ -53,6 +53,12 @@ public class ModelGenerator extends Generator<JavaFile> {
         age.setScope(Scope.PRIVATE);
         age.setComplexType(new ComplexType(List.class).addChild(new ComplexType(Map.class).addType(String.class).addType(Integer.class)));
 
+        FieldSpec test = new FieldSpec("test");
+        test.setDocSpec(new DocSpec("测试"));
+        test.setScope(Scope.PUBLIC);
+        test.addModifier(Modifier.STATIC).addModifier(Modifier.FINAL);
+        test.setComplexType(new ComplexType(Map.class).addType(String.class).addChild(new ComplexType(List.class).addChild(new ComplexType(Map.class).addType(String.class).addType(Integer.class))));
+
         TypeSpec type = new TypeSpec(getModelName());
         type.setScope(Scope.PUBLIC);
         type.addModifier(Modifier.FINAL);
@@ -64,11 +70,12 @@ public class ModelGenerator extends Generator<JavaFile> {
         type.addDocSpec(new DocSpec("time   :", "2017-12-28 16:12:32"));
         type.addDocSpec(new DocSpec("version:", "1.0.0"));
         type.addDocSpec(new DocSpec("desc   :", "测试类"));
-        type.addAnnoSpec(new AnnoSpec(Resource.class));
-        type.addAnnoSpec(new AnnoSpec(Reference.class));
+        type.addAnnoSpec(new AnnoSpec(Resource.class, "name"));
+        type.addAnnoSpec(new AnnoSpec(Reference.class, "age", "test"));
 
         type.addFieldSpec(username);
         type.addFieldSpec(age);
+        type.addFieldSpec(test);
 
         javaFile.setTypeSpec(type);
 

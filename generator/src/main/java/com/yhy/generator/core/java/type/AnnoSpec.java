@@ -9,9 +9,11 @@ package com.yhy.generator.core.java.type;
  */
 public class AnnoSpec {
     private Class<?> type;
+    private String[] args;
 
-    public AnnoSpec(Class<?> type) {
+    public AnnoSpec(Class<?> type, String... args) {
         this.type = type;
+        this.args = args;
     }
 
     public Class<?> getType() {
@@ -20,6 +22,24 @@ public class AnnoSpec {
 
     @Override
     public String toString() {
-        return "@" + type.getSimpleName() + System.getProperty("line.separator");
+        StringBuilder sb = new StringBuilder();
+        sb.append("@").append(type.getSimpleName());
+        if (null != args && args.length > 0) {
+            sb.append("(");
+            if (args.length == 1) {
+                sb.append("\"").append(args[0]).append("\"");
+            } else {
+                sb.append("{");
+                for (int i = 0; i < args.length; i++) {
+                    sb.append("\"").append(args[i]).append("\"");
+                    if (i < args.length - 1) {
+                        sb.append(", ");
+                    }
+                }
+                sb.append("}");
+            }
+            sb.append(")");
+        }
+        return sb.toString();
     }
 }

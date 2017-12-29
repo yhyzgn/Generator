@@ -3,8 +3,7 @@ package com.yhy.generator.core.java.type;
 import com.yhy.generator.core.java.Modifier;
 import com.yhy.generator.core.java.Scope;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * author : 颜洪毅
@@ -160,23 +159,38 @@ public class TypeSpec {
         return this;
     }
 
-    public List<Class<?>> getClassList() {
-        List<Class<?>> result = new ArrayList<>();
+    public List<Class<?>> getUsedClassList() {
+        List<Class<?>> temp = new ArrayList<>();
         if (null != annoSpecList) {
             for (AnnoSpec anno : annoSpecList) {
-                result.add(anno.getType());
+                temp.add(anno.getType());
             }
         }
         if (null != fieldSpecList) {
             for (FieldSpec field : fieldSpecList) {
-                result.addAll(field.getClassList());
+                temp.addAll(field.getClassList());
             }
         }
-        result.add(extClass);
+        temp.add(extClass);
         if (null != interList) {
-            result.addAll(interList);
+            temp.addAll(interList);
         }
-        return result;
+        // 去重并排序
+        Set<Class<?>> result = null;
+        if (!temp.isEmpty()) {
+            result = new TreeSet<>(new Comparator<Class<?>>() {
+                @Override
+                public int compare(Class<?> o1, Class<?> o2) {
+                    return o1.getName().compareTo(o2.getName());
+                }
+            });
+            for (Class<?> clazz : temp) {
+                if (!result.contains(clazz)) {
+                    result.add(clazz);
+                }
+            }
+        }
+        return new ArrayList<>(result);
     }
 
     @Override
@@ -193,7 +207,7 @@ public class TypeSpec {
         }
         if (null != annoSpecList && !annoSpecList.isEmpty()) {
             for (AnnoSpec anno : annoSpecList) {
-                sb.append(anno.toString());
+                sb.append(anno.toString()).append(lineSeparator);
             }
         }
         sb.append(scope.getScope()).append(" ");

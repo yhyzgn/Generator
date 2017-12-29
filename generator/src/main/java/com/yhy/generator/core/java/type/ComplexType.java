@@ -89,24 +89,25 @@ public class ComplexType {
     private String getAllClassString(ComplexType type) {
         StringBuilder sb = new StringBuilder();
         sb.append(type.getType().getSimpleName()).append("<");
-        if (null == type.getChildList() || type.getChildList().isEmpty()) {
-            if (null != type.getTypeList()) {
-                for (Class<?> clazz : type.getTypeList()) {
-                    sb.append(clazz.getSimpleName()).append(", ");
+//        if (null == type.getChildList() || type.getChildList().isEmpty()) {
+        if (null != type.getTypeList() && !type.getTypeList().isEmpty()) {
+            for (int i = 0; i < type.getTypeList().size(); i++) {
+                sb.append(type.getTypeList().get(i).getSimpleName());
+                if (i < type.getTypeList().size() - 1 || null != type.getChildList() && !type.getChildList().isEmpty()) {
+                    sb.append(", ");
                 }
             }
-            if (sb.toString().endsWith(", ")) {
-//                sb.deleteCharAt(sb.length());
-            }
-        } else if (null != type.getChildList()) {
+        }
+//        } else if (null != type.getChildList()) {
+        if (null != type.getChildList()) {
             for (ComplexType ct : type.getChildList()) {
                 sb.append(getAllClassString(ct));
             }
         }
         sb.append(">");
         String result = sb.toString();
-        if (StringUtils.equals("<>", result)) {
-            result = "<?>";
+        if (result.contains("<>")) {
+            result = result.replaceAll("<>", "<?>");
         }
         return result;
     }
