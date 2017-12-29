@@ -59,7 +59,7 @@ public class JavaFile implements AbsFile {
 
         sb.append("package ").append(packageName).append(";").append(lineSeparator).append(lineSeparator);
 
-        List<Class<?>> classList = typeSpec.getUsedClassList();
+        List<Class<?>> classList = typeSpec.getClassList();
         if (null != classList) {
             for (Class<?> clazz : classList) {
                 if (!StringUtils.equals("java.lang", clazz.getPackage().getName()) && !StringUtils.equals(packageName, clazz.getPackage().getName())) {

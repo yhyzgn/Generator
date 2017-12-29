@@ -2,6 +2,7 @@ package com.yhy.generator.simple.test;
 
 import com.yhy.generator.api.db.TableApi;
 import com.yhy.generator.common.Const;
+import com.yhy.generator.core.java.type.StMentSpec;
 import com.yhy.generator.utils.ConvertUtils;
 import com.yhy.generator.utils.PropUtils;
 import com.yhy.generator.utils.StringUtils;
@@ -59,7 +60,44 @@ public class AppTest {
     }
 
     @Test
-    void separatorTest(){
+    void separatorTest() {
         String result = System.getProperty("line.separator");
+    }
+
+    @Test
+    void testFormat() {
+        String statement = "$T user = new $T($I, $S)";
+        Pattern pattern = Pattern.compile("(\\$[T,I,S])");
+        Matcher matcher = pattern.matcher(statement);
+        StringBuffer sb = new StringBuffer();
+        String flag;
+        while (matcher.find()) {
+            flag = matcher.group(1);
+            LOGGER.info(flag);
+            switch (flag) {
+                case "$T":
+                    matcher.appendReplacement(sb, TestUser.class.getSimpleName());
+                    break;
+                case "$I":
+                    matcher.appendReplacement(sb, 23 + "");
+                    break;
+                case "$S":
+                    matcher.appendReplacement(sb, "\"张三\"");
+                    break;
+            }
+        }
+        matcher.appendTail(sb);
+        LOGGER.info(sb.toString());
+        LOGGER.info("=========================================");
+
+        StMentSpec stMentSpec = new StMentSpec();
+        stMentSpec.format(statement, TestUser.class, TestUser.class, 23, "张三");
+        LOGGER.info(stMentSpec.toString());
+        LOGGER.info("=========================================");
+        StMentSpec stIf = new StMentSpec("if(null != user)");
+        stIf.addStMentSpec(new StMentSpec("$T.out.println(user.getName())").format(TestUser.class));
+        stIf.addStMentSpec(new StMentSpec("$T.out.println(user.getName())").format(TestUser.class));
+        LOGGER.info("\n" + stIf.format().toString());
+        LOGGER.info("=========================================");
     }
 }

@@ -2,6 +2,7 @@ package com.yhy.generator.core.java.type;
 
 import com.yhy.generator.core.java.Modifier;
 import com.yhy.generator.core.java.Scope;
+import com.yhy.generator.core.java.type.abs.AbsSpec;
 
 import java.util.*;
 
@@ -12,7 +13,7 @@ import java.util.*;
  * version: 1.0.0
  * desc   :
  */
-public class TypeSpec {
+public class TypeSpec implements AbsSpec {
     private String name;
     private boolean isInter;
     private List<DocSpec> docSpecList;
@@ -159,16 +160,13 @@ public class TypeSpec {
         return this;
     }
 
-    public List<Class<?>> getUsedClassList() {
+    public List<Class<?>> getClassList() {
         List<Class<?>> temp = new ArrayList<>();
         if (null != annoSpecList) {
             for (AnnoSpec anno : annoSpecList) {
-                temp.add(anno.getType());
-            }
-        }
-        if (null != fieldSpecList) {
-            for (FieldSpec field : fieldSpecList) {
-                temp.addAll(field.getClassList());
+                if (null != anno.getClassList()) {
+                    temp.addAll(anno.getClassList());
+                }
             }
         }
         if (null != extClass) {
@@ -177,6 +175,21 @@ public class TypeSpec {
         if (null != interList) {
             temp.addAll(interList);
         }
+        if (null != fieldSpecList) {
+            for (FieldSpec field : fieldSpecList) {
+                if (null != field.getClassList()) {
+                    temp.addAll(field.getClassList());
+                }
+            }
+        }
+        if (null != methodSpecList) {
+            for (MethodSpec method : methodSpecList) {
+                if (null != method.getClassList()) {
+                    temp.addAll(method.getClassList());
+                }
+            }
+        }
+
         // 去重并排序
         Set<Class<?>> result = null;
         if (!temp.isEmpty()) {

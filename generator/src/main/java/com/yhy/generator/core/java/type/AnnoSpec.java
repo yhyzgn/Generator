@@ -1,5 +1,10 @@
 package com.yhy.generator.core.java.type;
 
+import com.yhy.generator.core.java.type.abs.AbsSpec;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * author : 颜洪毅
  * e-mail : yhyzgn@gmail.com
@@ -7,7 +12,7 @@ package com.yhy.generator.core.java.type;
  * version: 1.0.0
  * desc   :
  */
-public class AnnoSpec {
+public class AnnoSpec implements AbsSpec {
     private Class<?> type;
     private String[] args;
 
@@ -41,5 +46,15 @@ public class AnnoSpec {
             sb.append(")");
         }
         return sb.toString();
+    }
+
+    @Override
+    public List<Class<?>> getClassList() {
+        if (null != type) {
+            List<Class<?>> result = new ArrayList<>();
+            result.add(type);
+            return result;
+        }
+        return null;
     }
 }

@@ -2,6 +2,7 @@ package com.yhy.generator.core.java.type;
 
 import com.yhy.generator.core.java.Modifier;
 import com.yhy.generator.core.java.Scope;
+import com.yhy.generator.core.java.type.abs.AbsSpec;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +14,14 @@ import java.util.List;
  * version: 1.0.0
  * desc   :
  */
-public class FieldSpec {
+public class FieldSpec implements AbsSpec {
     private String name;
     private DocSpec docSpec;
     private List<AnnoSpec> annoSpecList;
     private Scope scope;
     private List<Modifier> modifierList;
     private Class<?> type;
-    private ComplexType complexType;
+    private ComplexSpec complexSpec;
 
     public FieldSpec(String name) {
         this.name = name;
@@ -92,12 +93,12 @@ public class FieldSpec {
         return this;
     }
 
-    public ComplexType getComplexType() {
-        return complexType;
+    public ComplexSpec getComplexSpec() {
+        return complexSpec;
     }
 
-    public FieldSpec setComplexType(ComplexType complexType) {
-        this.complexType = complexType;
+    public FieldSpec setComplexSpec(ComplexSpec complexSpec) {
+        this.complexSpec = complexSpec;
         return this;
     }
 
@@ -105,13 +106,15 @@ public class FieldSpec {
         List<Class<?>> result = new ArrayList<>();
         if (null != annoSpecList) {
             for (AnnoSpec anno : annoSpecList) {
-                result.add(anno.getType());
+                if (null != anno.getClassList()) {
+                    result.addAll(anno.getClassList());
+                }
             }
         }
         if (null != type) {
             result.add(type);
-        } else if (null != complexType) {
-            result.addAll(complexType.getClassList());
+        } else if (null != complexSpec && null != complexSpec.getClassList()) {
+            result.addAll(complexSpec.getClassList());
         }
         return result;
     }
@@ -136,8 +139,8 @@ public class FieldSpec {
 
         if (null != type) {
             sb.append(type.getSimpleName());
-        } else if (null != complexType) {
-            sb.append(complexType.toString());
+        } else if (null != complexSpec) {
+            sb.append(complexSpec.toString());
         }
         sb.append(" ").append(name).append(";").append(lineSeparator);
         return sb.toString();

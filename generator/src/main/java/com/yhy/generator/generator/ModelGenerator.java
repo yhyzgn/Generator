@@ -5,14 +5,8 @@ import com.yhy.generator.core.java.Modifier;
 import com.yhy.generator.core.java.Scope;
 import com.yhy.generator.core.java.type.*;
 import com.yhy.generator.generator.base.Generator;
-import com.yhy.generator.helper.FileWriter;
 import com.yhy.generator.model.table.Table;
-import jdk.nashorn.internal.ir.annotations.Reference;
 
-import javax.annotation.Resource;
-import javax.naming.Context;
-import javax.servlet.annotation.WebListener;
-import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -50,13 +44,13 @@ public class ModelGenerator extends Generator<JavaFile> {
         FieldSpec age = new FieldSpec("age");
         age.setDocSpec(new DocSpec("年龄"));
         age.setScope(Scope.PRIVATE);
-        age.setComplexType(new ComplexType(List.class).addChild(new ComplexType(Map.class).addType(String.class).addType(Integer.class)));
+        age.setComplexSpec(new ComplexSpec(List.class).addChild(new ComplexSpec(Map.class).addType(String.class).addType(Integer.class)));
 
         FieldSpec test = new FieldSpec("test");
         test.setDocSpec(new DocSpec("测试"));
         test.setScope(Scope.PUBLIC);
 //        test.addModifier(Modifier.STATIC).addModifier(Modifier.FINAL);
-        test.setComplexType(new ComplexType(Map.class).addType(String.class).addChild(new ComplexType(List.class).addChild(new ComplexType(Map.class).addType(String.class).addType(Integer.class))));
+        test.setComplexSpec(new ComplexSpec(Map.class).addType(String.class).addChild(new ComplexSpec(List.class).addChild(new ComplexSpec(Map.class).addType(String.class).addType(Integer.class))));
 
         TypeSpec type = new TypeSpec(getModelName());
         type.setScope(Scope.PUBLIC);

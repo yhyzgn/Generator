@@ -1,5 +1,10 @@
 package com.yhy.generator.core.java.type;
 
+import com.yhy.generator.core.java.type.abs.AbsSpec;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * author : 颜洪毅
  * e-mail : yhyzgn@gmail.com
@@ -7,13 +12,20 @@ package com.yhy.generator.core.java.type;
  * version: 1.0.0
  * desc   :
  */
-public class ParamSpec {
-    private Class<?> type;
+public class ParamSpec implements AbsSpec {
     private String name;
+    private Class<?> type;
+    private ComplexSpec complexSpec;
+    private AnnoSpec annoSpec;
 
-    public ParamSpec(Class<?> type, String name) {
-        this.type = type;
+    public ParamSpec(String name, Class<?> type) {
         this.name = name;
+        this.type = type;
+    }
+
+    public ParamSpec(String name, ComplexSpec complexSpec) {
+        this.name = name;
+        this.complexSpec = complexSpec;
     }
 
     public Class<?> getType() {
@@ -34,8 +46,47 @@ public class ParamSpec {
         return this;
     }
 
+    public ComplexSpec getComplexSpec() {
+        return complexSpec;
+    }
+
+    public AnnoSpec getAnnoSpec() {
+        return annoSpec;
+    }
+
+    public ParamSpec setAnnoSpec(AnnoSpec annoSpec) {
+        this.annoSpec = annoSpec;
+        return this;
+    }
+
+    public ParamSpec setComplexSpec(ComplexSpec complexSpec) {
+        this.complexSpec = complexSpec;
+        return this;
+    }
+
+    public List<Class<?>> getClassList() {
+        List<Class<?>> result = new ArrayList<>();
+        if (null != type) {
+            result.add(type);
+        }
+        if (null != complexSpec && null != complexSpec.getClassList()) {
+            result.addAll(complexSpec.getClassList());
+        }
+        return result;
+    }
+
     @Override
     public String toString() {
-        return type.getSimpleName() + " " + name;
+        StringBuilder sb = new StringBuilder();
+        if (null != annoSpec) {
+            sb.append(annoSpec.toString()).append(" ");
+        }
+        if (null != type) {
+            sb.append(type.getName());
+        } else if (null != complexSpec) {
+            sb.append(complexSpec.toString());
+        }
+        sb.append(" ").append(name);
+        return sb.toString();
     }
 }
