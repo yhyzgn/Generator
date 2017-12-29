@@ -8,12 +8,12 @@
   <component name="ChangeListManager">
     <list default="true" id="75882b43-dbe9-4f2f-9137-04ce578be350" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/file/JavaFile.java" afterPath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/file/JavaFile.java" />
-      <change beforePath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/AnnoSpec.java" afterPath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/AnnoSpec.java" />
-      <change beforePath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/ComplexType.java" afterPath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/ComplexType.java" />
-      <change beforePath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/FieldSpec.java" afterPath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/FieldSpec.java" />
       <change beforePath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/TypeSpec.java" afterPath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/TypeSpec.java" />
+      <change beforePath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/MapperXmlGenerator.java" afterPath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/MapperXmlGenerator.java" />
       <change beforePath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/ModelGenerator.java" afterPath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/ModelGenerator.java" />
+      <change beforePath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/base/Generator.java" afterPath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/base/Generator.java" />
+      <change beforePath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/helper/FileWriter.java" afterPath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/helper/FileWriter.java" />
+      <change beforePath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/helper/GeneratorHelper.java" afterPath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/helper/GeneratorHelper.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -40,17 +40,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ModelGenerator.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="JavaFile.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/file/JavaFile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModelGenerator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/ModelGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="61" column="14" lean-forward="false" selection-start-line="61" selection-start-column="14" selection-end-line="61" selection-end-column="14" />
+            <state relative-caret-position="342">
+              <caret line="58" column="70" lean-forward="false" selection-start-line="58" selection-start-column="70" selection-end-line="58" selection-end-column="70" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#799#800#0" expanded="true" />
                 <element signature="e#827#828#0" expanded="true" />
                 <element signature="e#878#879#0" expanded="true" />
                 <element signature="e#915#916#0" expanded="true" />
+                <element signature="e#966#967#0" expanded="true" />
+                <element signature="e#998#999#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -59,32 +71,31 @@
       <file leaf-file-name="HelloController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/simple/src/main/java/com/yhy/generator/simple/controller/HelloController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="58" column="17" lean-forward="true" selection-start-line="58" selection-start-column="17" selection-end-line="58" selection-end-column="17" />
+            <state relative-caret-position="226">
+              <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GeneratorHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/helper/GeneratorHelper.java">
+      <file leaf-file-name="Generator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/base/Generator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="33" column="15" lean-forward="true" selection-start-line="33" selection-start-column="15" selection-end-line="33" selection-end-column="15" />
+            <state relative-caret-position="218">
+              <caret line="55" column="25" lean-forward="false" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#719#720#0" expanded="true" />
-                <element signature="e#774#775#0" expanded="true" />
+                <element signature="e#1284#1285#0" expanded="true" />
+                <element signature="e#1321#1322#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TypeSpec.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TypeSpec.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/TypeSpec.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="183" column="64" lean-forward="true" selection-start-line="183" selection-start-column="64" selection-end-line="183" selection-end-column="64" />
+            <state relative-caret-position="411">
+              <caret line="187" column="15" lean-forward="false" selection-start-line="187" selection-start-column="15" selection-end-line="187" selection-end-column="15" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#679#680#0" expanded="true" />
@@ -109,8 +120,8 @@
                 <element signature="e#3125#3126#0" expanded="true" />
                 <element signature="e#3440#3441#0" expanded="true" />
                 <element signature="e#3477#3478#0" expanded="true" />
-                <element signature="e#4508#4509#0" expanded="true" />
-                <element signature="e#4591#4592#0" expanded="true" />
+                <element signature="e#4554#4555#0" expanded="true" />
+                <element signature="e#4637#4638#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -138,7 +149,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/utils/PropUtils.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/init/InitializerHelper.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/api/LoadTables.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/api/TableHelper.java" />
@@ -167,9 +177,7 @@
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/file/abs/AbsFile.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/file/XmlFile.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/utils/IOUtils.java" />
-        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/helper/FileWriter.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/xml/Element.java" />
-        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/MapperXmlGenerator.java" />
         <option value="$PROJECT_DIR$/simple/src/main/resources/gen-config.properties" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/ImportSpec.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/TypeSpec.java" />
@@ -177,18 +185,21 @@
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/Modifier.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/xml/Attribute.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/ImportSpec.java" />
-        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/base/Generator.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/DocSpec.java" />
-        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/helper/GeneratorHelper.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/file/JavaFile.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/ParamSpec.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/MethodSpec.java" />
         <option value="$PROJECT_DIR$/simple/src/main/java/com/yhy/generator/simple/controller/HelloController.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/AnnoSpec.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/FieldSpec.java" />
-        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/ModelGenerator.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/ComplexType.java" />
+        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/helper/GeneratorHelper.java" />
+        <option value="$PROJECT_DIR$/simple/src/main/java/com/yhy/generator/simple/common/model/article/Article.java" />
+        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/MapperXmlGenerator.java" />
+        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/helper/FileWriter.java" />
+        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/base/Generator.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/TypeSpec.java" />
+        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/ModelGenerator.java" />
       </list>
     </option>
   </component>
@@ -228,7 +239,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="382" />
     <option name="y" value="32" />
     <option name="width" value="1400" />
@@ -444,46 +455,6 @@
               <item name="yhy" type="462c0819:PsiDirectoryNode" />
               <item name="generator" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="file" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Generator" type="462c0819:PsiDirectoryNode" />
-              <item name="generator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="yhy" type="462c0819:PsiDirectoryNode" />
-              <item name="generator" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Generator" type="462c0819:PsiDirectoryNode" />
-              <item name="generator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="yhy" type="462c0819:PsiDirectoryNode" />
-              <item name="generator" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="type" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Generator" type="462c0819:PsiDirectoryNode" />
-              <item name="generator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="yhy" type="462c0819:PsiDirectoryNode" />
-              <item name="generator" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
               <item name="xml" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -521,6 +492,18 @@
               <item name="yhy" type="462c0819:PsiDirectoryNode" />
               <item name="generator" type="462c0819:PsiDirectoryNode" />
               <item name="init" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Generator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Generator" type="462c0819:PsiDirectoryNode" />
+              <item name="generator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="yhy" type="462c0819:PsiDirectoryNode" />
+              <item name="generator" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Generator" type="b2602c69:ProjectViewProjectNode" />
@@ -913,7 +896,7 @@
       <workItem from="1514338053625" duration="25895000" />
       <workItem from="1514422576219" duration="23971000" />
       <workItem from="1514509915751" duration="1471000" />
-      <workItem from="1514511472428" duration="2479000" />
+      <workItem from="1514511472428" duration="5114000" />
     </task>
     <servers />
   </component>
@@ -950,11 +933,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71179000" />
+    <option name="totallyTimeSpent" value="73814000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -974,7 +956,7 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45062587" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.6926286" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.53129345" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24485861" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1002,20 +984,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/utils/PropUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="26" column="38" lean-forward="false" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/simple/src/test/java/com/yhy/generator/simple/test/AppTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/simple/src/main/resources/log4j2.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-657">
@@ -1052,16 +1020,6 @@
         <state relative-caret-position="125">
           <caret line="127" column="0" lean-forward="true" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/api/loader/TableLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1168,20 +1126,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/MapperXmlGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="22" column="35" lean-forward="true" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#439#440#0" expanded="false" />
-            <element signature="e#467#468#0" expanded="false" />
-            <element signature="e#518#519#0" expanded="false" />
-            <element signature="e#560#561#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/file/XmlFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -1229,13 +1173,6 @@
         <state relative-caret-position="624">
           <caret line="37" column="20" lean-forward="false" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/base/Generator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="69" column="25" lean-forward="true" selection-start-line="69" selection-start-column="25" selection-end-line="69" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1290,14 +1227,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/helper/FileWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="7" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/ImportSpec.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -1332,7 +1261,7 @@
         <state relative-caret-position="97">
           <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1342,49 +1271,21 @@
         <state relative-caret-position="139">
           <caret line="127" column="47" lean-forward="false" selection-start-line="127" selection-start-column="47" selection-end-line="127" selection-end-column="47" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#727#728#0" expanded="true" />
-            <element signature="e#754#755#0" expanded="true" />
-            <element signature="e#887#888#0" expanded="true" />
-            <element signature="e#917#918#0" expanded="true" />
-            <element signature="e#1075#1076#0" expanded="true" />
-            <element signature="e#1110#1111#0" expanded="true" />
-            <element signature="e#1397#1398#0" expanded="true" />
-            <element signature="e#1425#1426#0" expanded="true" />
-            <element signature="e#1573#1574#0" expanded="true" />
-            <element signature="e#1608#1609#0" expanded="true" />
-            <element signature="e#1897#1898#0" expanded="true" />
-            <element signature="e#1924#1925#0" expanded="true" />
-            <element signature="e#2067#2068#0" expanded="true" />
-            <element signature="e#2101#2102#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/AnnoSpec.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="28" column="35" lean-forward="true" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/simple/src/main/java/com/yhy/generator/simple/controller/HelloController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="58" column="17" lean-forward="true" selection-start-line="58" selection-start-column="17" selection-end-line="58" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/helper/GeneratorHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="33" column="15" lean-forward="true" selection-start-line="33" selection-start-column="15" selection-end-line="33" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#719#720#0" expanded="true" />
-            <element signature="e#774#775#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#727#728#0" expanded="false" />
+            <element signature="e#754#755#0" expanded="false" />
+            <element signature="e#887#888#0" expanded="false" />
+            <element signature="e#917#918#0" expanded="false" />
+            <element signature="e#1075#1076#0" expanded="false" />
+            <element signature="e#1110#1111#0" expanded="false" />
+            <element signature="e#1397#1398#0" expanded="false" />
+            <element signature="e#1425#1426#0" expanded="false" />
+            <element signature="e#1573#1574#0" expanded="false" />
+            <element signature="e#1608#1609#0" expanded="false" />
+            <element signature="e#1897#1898#0" expanded="false" />
+            <element signature="e#1924#1925#0" expanded="false" />
+            <element signature="e#2067#2068#0" expanded="false" />
+            <element signature="e#2101#2102#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1394,17 +1295,17 @@
         <state relative-caret-position="94">
           <caret line="96" column="36" lean-forward="false" selection-start-line="96" selection-start-column="36" selection-end-line="96" selection-end-column="36" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#565#566#0" expanded="true" />
-            <element signature="e#592#593#0" expanded="true" />
-            <element signature="e#737#738#0" expanded="true" />
-            <element signature="e#768#769#0" expanded="true" />
-            <element signature="e#1043#1044#0" expanded="true" />
-            <element signature="e#1075#1076#0" expanded="true" />
-            <element signature="e#1373#1374#0" expanded="true" />
-            <element signature="e#1413#1414#0" expanded="true" />
-            <element signature="e#1950#1951#0" expanded="true" />
-            <element signature="e#1996#1997#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#565#566#0" expanded="false" />
+            <element signature="e#592#593#0" expanded="false" />
+            <element signature="e#737#738#0" expanded="false" />
+            <element signature="e#768#769#0" expanded="false" />
+            <element signature="e#1043#1044#0" expanded="false" />
+            <element signature="e#1075#1076#0" expanded="false" />
+            <element signature="e#1373#1374#0" expanded="false" />
+            <element signature="e#1413#1414#0" expanded="false" />
+            <element signature="e#1950#1951#0" expanded="false" />
+            <element signature="e#1996#1997#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1420,44 +1321,6 @@
             <element signature="e#558#559#0" expanded="false" />
             <element signature="e#702#703#0" expanded="false" />
             <element signature="e#758#759#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/file/JavaFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="66" column="17" lean-forward="true" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#544#545#0" expanded="true" />
-            <element signature="e#581#582#0" expanded="true" />
-            <element signature="e#762#763#0" expanded="true" />
-            <element signature="e#796#797#0" expanded="true" />
-            <element signature="e#850#851#0" expanded="true" />
-            <element signature="e#896#897#0" expanded="true" />
-            <element signature="e#932#933#0" expanded="true" />
-            <element signature="e#964#965#0" expanded="true" />
-            <element signature="e#1014#1015#0" expanded="true" />
-            <element signature="e#1056#1057#0" expanded="true" />
-            <element signature="e#1093#1094#0" expanded="true" />
-            <element signature="e#1124#1125#0" expanded="true" />
-            <element signature="e#1174#1175#0" expanded="true" />
-            <element signature="e#1214#1215#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/ModelGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="61" column="14" lean-forward="false" selection-start-line="61" selection-start-column="14" selection-end-line="61" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#799#800#0" expanded="true" />
-            <element signature="e#827#828#0" expanded="true" />
-            <element signature="e#878#879#0" expanded="true" />
-            <element signature="e#915#916#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1492,10 +1355,80 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/api/loader/TableLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Java/jdk1.8.0_151/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="918" column="5" lean-forward="true" selection-start-line="918" selection-start-column="5" selection-end-line="918" selection-end-column="5" />
+          <folding>
+            <element signature="e#36393#36394#0" expanded="false" />
+            <element signature="e#36459#36460#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/MapperXmlGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="26" column="34" lean-forward="false" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
+          <folding>
+            <element signature="e#439#440#0" expanded="false" />
+            <element signature="e#467#468#0" expanded="false" />
+            <element signature="e#641#642#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/file/JavaFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/helper/FileWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding>
+            <element signature="e#599#600#0" expanded="false" />
+            <element signature="e#626#627#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/helper/GeneratorHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="38" column="53" lean-forward="true" selection-start-line="38" selection-start-column="53" selection-end-line="38" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#764#765#0" expanded="false" />
+            <element signature="e#819#820#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/AnnoSpec.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/TypeSpec.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="183" column="64" lean-forward="true" selection-start-line="183" selection-start-column="64" selection-end-line="183" selection-end-column="64" />
+        <state relative-caret-position="411">
+          <caret line="187" column="15" lean-forward="false" selection-start-line="187" selection-start-column="15" selection-end-line="187" selection-end-column="15" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#679#680#0" expanded="true" />
@@ -1520,8 +1453,51 @@
             <element signature="e#3125#3126#0" expanded="true" />
             <element signature="e#3440#3441#0" expanded="true" />
             <element signature="e#3477#3478#0" expanded="true" />
-            <element signature="e#4508#4509#0" expanded="true" />
-            <element signature="e#4591#4592#0" expanded="true" />
+            <element signature="e#4554#4555#0" expanded="true" />
+            <element signature="e#4637#4638#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/base/Generator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="55" column="25" lean-forward="false" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
+          <folding>
+            <element signature="e#1284#1285#0" expanded="true" />
+            <element signature="e#1321#1322#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simple/src/main/java/com/yhy/generator/simple/controller/HelloController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simple/src/main/java/com/yhy/generator/simple/common/model/article/Article.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="16" column="28" lean-forward="true" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/ModelGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="58" column="70" lean-forward="false" selection-start-line="58" selection-start-column="70" selection-end-line="58" selection-end-column="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#799#800#0" expanded="true" />
+            <element signature="e#827#828#0" expanded="true" />
+            <element signature="e#878#879#0" expanded="true" />
+            <element signature="e#915#916#0" expanded="true" />
+            <element signature="e#966#967#0" expanded="true" />
+            <element signature="e#998#999#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -25,31 +25,33 @@ public class FileWriter<T extends AbsFile> {
     }
 
     public void write() {
-        this.dataFile = dataFile;
-
-        File targetFile = getTargetFile();
-        try {
-            write(new BufferedOutputStream(new FileOutputStream(targetFile)));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        write(null);
     }
 
     public void write(OutputStream os) {
-        if (null == os || null == dataFile) {
+        if (null == dataFile) {
             return;
+        }
+
+        if (null == os) {
+            File targetFile = getTargetFile();
+            try {
+                os = new BufferedOutputStream(new FileOutputStream(targetFile));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
 
         if (os instanceof PrintStream) {
             ((PrintStream) os).print(dataFile.toString());
         } else {
-            byte[] content = dataFile.toString().getBytes();
-            if (!(os instanceof BufferedOutputStream)) {
-                os = new BufferedOutputStream(os);
-            }
             try {
+                byte[] content = dataFile.toString().getBytes("UTF-8");
+                if (!(os instanceof BufferedOutputStream)) {
+                    os = new BufferedOutputStream(os);
+                }
                 os.write(content, 0, content.length);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             } finally {
                 IOUtils.close(os);

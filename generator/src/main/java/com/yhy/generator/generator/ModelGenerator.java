@@ -34,9 +34,8 @@ public class ModelGenerator extends Generator<JavaFile> {
     }
 
     @Override
-    public void generate() {
-        FileWriter<JavaFile> writer = new FileWriter<>(this, genJava());
-        writer.write(System.out);
+    public JavaFile getDataFile() {
+        return genJava();
     }
 
     private JavaFile genJava() {
@@ -46,7 +45,7 @@ public class ModelGenerator extends Generator<JavaFile> {
         username.setDocSpec(new DocSpec("用户名"));
         username.setScope(Scope.PRIVATE);
         username.setType(String.class);
-        username.addAnnoSpec(new AnnoSpec(WebListener.class));
+//        username.addAnnoSpec(new AnnoSpec(WebListener.class));
 
         FieldSpec age = new FieldSpec("age");
         age.setDocSpec(new DocSpec("年龄"));
@@ -56,22 +55,22 @@ public class ModelGenerator extends Generator<JavaFile> {
         FieldSpec test = new FieldSpec("test");
         test.setDocSpec(new DocSpec("测试"));
         test.setScope(Scope.PUBLIC);
-        test.addModifier(Modifier.STATIC).addModifier(Modifier.FINAL);
+//        test.addModifier(Modifier.STATIC).addModifier(Modifier.FINAL);
         test.setComplexType(new ComplexType(Map.class).addType(String.class).addChild(new ComplexType(List.class).addChild(new ComplexType(Map.class).addType(String.class).addType(Integer.class))));
 
         TypeSpec type = new TypeSpec(getModelName());
         type.setScope(Scope.PUBLIC);
         type.addModifier(Modifier.FINAL);
-        type.setExtClass(Object.class);
-        type.addInter(Serializable.class);
-        type.addInter(Context.class);
+//        type.setExtClass(Object.class);
+//        type.addInter(Serializable.class);
+//        type.addInter(Context.class);
         type.addDocSpec(new DocSpec("author :", "颜洪毅"));
         type.addDocSpec(new DocSpec("e-mail :", "yhyzgn@gmail.com"));
         type.addDocSpec(new DocSpec("time   :", "2017-12-28 16:12:32"));
         type.addDocSpec(new DocSpec("version:", "1.0.0"));
         type.addDocSpec(new DocSpec("desc   :", "测试类"));
-        type.addAnnoSpec(new AnnoSpec(Resource.class, "name"));
-        type.addAnnoSpec(new AnnoSpec(Reference.class, "age", "test"));
+//        type.addAnnoSpec(new AnnoSpec(Resource.class, "name"));
+//        type.addAnnoSpec(new AnnoSpec(Reference.class, "age", "test"));
 
         type.addFieldSpec(username);
         type.addFieldSpec(age);

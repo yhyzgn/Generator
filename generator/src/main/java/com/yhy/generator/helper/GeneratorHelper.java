@@ -1,6 +1,7 @@
 package com.yhy.generator.helper;
 
 import com.yhy.generator.api.loader.TableLoader;
+import com.yhy.generator.core.file.JavaFile;
 import com.yhy.generator.core.xml.Attribute;
 import com.yhy.generator.core.xml.Element;
 import com.yhy.generator.core.file.XmlFile;
@@ -32,7 +33,8 @@ public class GeneratorHelper {
         }
 
         ModelGenerator modelGenerator = new ModelGenerator(table);
-        modelGenerator.generate();
+        JavaFile javaFile = modelGenerator.generate();
+        LOGGER.info("\n=================================================\n" + javaFile + "\n=================================================");
 
 //        MapperXmlGenerator xmlGenerator = new MapperXmlGenerator(table);
 //        xmlGenerator.generate();

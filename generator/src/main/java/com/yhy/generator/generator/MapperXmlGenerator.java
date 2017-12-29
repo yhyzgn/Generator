@@ -24,14 +24,12 @@ public class MapperXmlGenerator extends Generator<XmlFile> {
     }
 
     @Override
-    public void generate() {
-        FileWriter<XmlFile> writer = new FileWriter<>(this, genXml());
-        writer.write();
+    public XmlFile getDataFile() {
+        return genXml();
     }
 
     private XmlFile genXml() {
         XmlFile xmlFile = new XmlFile();
-
         return xmlFile;
     }
 }

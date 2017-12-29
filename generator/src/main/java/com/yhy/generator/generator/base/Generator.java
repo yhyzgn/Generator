@@ -1,7 +1,9 @@
 package com.yhy.generator.generator.base;
 
 import com.yhy.generator.common.Const;
+import com.yhy.generator.core.file.JavaFile;
 import com.yhy.generator.core.file.abs.AbsFile;
+import com.yhy.generator.helper.FileWriter;
 import com.yhy.generator.model.table.Table;
 import com.yhy.generator.utils.ConvertUtils;
 import com.yhy.generator.utils.PropUtils;
@@ -9,6 +11,7 @@ import com.yhy.generator.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.OutputStream;
 import java.util.Locale;
 
 /**
@@ -41,7 +44,18 @@ public abstract class Generator<T extends AbsFile> {
 
     protected abstract FileType fileType();
 
-    public abstract void generate();
+    protected abstract T getDataFile();
+
+    public T generate() {
+        return generate(null);
+    }
+
+    public T generate(OutputStream os) {
+        T dataFile = getDataFile();
+        FileWriter<T> writer = new FileWriter<>(this, dataFile);
+        writer.write(os);
+        return dataFile;
+    }
 
     public String getBaseDir() {
         return baseDir;
@@ -112,14 +126,9 @@ public abstract class Generator<T extends AbsFile> {
             tableDirReplace = "";
         }
         tableDir = table.getInfo().getName().replaceAll(tableDirRule, tableDirReplace).toLowerCase(Locale.getDefault());
-        modelName(tableDir);
+        packageName += "." + tableDir;
+        modelName = ConvertUtils.caseFirstCharUpper(tableDir);
         tableDir += "/";
-    }
-
-    private void modelName(String tableDir) {
-        if (StringUtils.isNotEmpty(tableDir)) {
-            modelName = ConvertUtils.caseFirstCharUpper(tableDir);
-        }
     }
 
     private void baseDir() {

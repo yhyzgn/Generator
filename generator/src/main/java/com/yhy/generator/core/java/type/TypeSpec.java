@@ -171,7 +171,9 @@ public class TypeSpec {
                 temp.addAll(field.getClassList());
             }
         }
-        temp.add(extClass);
+        if (null != extClass) {
+            temp.add(extClass);
+        }
         if (null != interList) {
             temp.addAll(interList);
         }
