@@ -75,9 +75,9 @@ public class ModelGenerator extends Generator<JavaFile> {
 
         StMentSpec stIf = new StMentSpec("if(null != test)");
         stIf.addStMentSpec(new StMentSpec("$T.out.println(test)").format(System.class));
-        stIf.addStMentSpec(new StMentSpec("$T.out.println(\"哈哈哈哈哈\")").format(System.class));
+        stIf.addStMentSpec(new StMentSpec("$T.out.println($S)").format(System.class, "哈哈哈"));
         StMentSpec stElse = new StMentSpec("else");
-        stElse.addStMentSpec(new StMentSpec("$T.out.println(\"user为空\")").format(System.class));
+        stElse.addStMentSpec(new StMentSpec("$T.out.println($S)").format(System.class, "user为空"));
 
         method.addStMentSpec(stIf).addStMentSpec(stElse);
         method.addStMentSpec(new StMentSpec("return test"));
