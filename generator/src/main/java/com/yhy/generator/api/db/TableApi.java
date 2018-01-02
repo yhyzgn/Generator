@@ -70,12 +70,12 @@ public class TableApi extends BaseDBApi {
                     column.setNullable(StringUtils.equals("YES", String.valueOf(item.get("IS_NULLABLE"))));
                     column.setExtra(String.valueOf(item.get("EXTRA")));
                     column.setRealName(String.valueOf(item.get("COLUMN_NAME")));
-                    column.setName(ConvertUtils.line2Hump(column.getRealName()));
                     column.setPosition(Integer.valueOf(String.valueOf(item.get("ORDINAL_POSITION"))));
                     column.setDataType(String.valueOf(item.get("DATA_TYPE")));
                     column.setComment(String.valueOf(item.get("COLUMN_COMMENT")));
                     GenUtils.setKey(column, item.get("COLUMN_KEY"));
                     GenUtils.setDefValue(column, item.get("COLUMN_DEFAULT"));
+                    GenUtils.normalizeFieldName(column);
                     columnList.add(column);
                 }
                 return columnList;

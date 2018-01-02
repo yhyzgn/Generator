@@ -24,8 +24,11 @@ public interface Const {
     String PROP_GEN_JDBC_PASSWORD = "gen.jdbc.password";
     String GEN_TABLE_DIR_RULE = "gen.table.dir.rule";
     String GEN_TABLE_DIR_REPLACE = "gen.table.dir.replace";
-    String GEN_TABLE_COLUMN_RULE = "gen.table.column.rule";
-    String GEN_TABLE_COLUMN_REPLACE = "gen.table.column.replace";
+    String GEN_TABLE_FIELD_RULE = "gen.table.field.rule";
+    String GEN_TABLE_FIELD_REPLACE = "gen.table.field.replace";
+
+    String GEN_AUTHOR_NAME = "gen.author.name";
+    String GEN_AUTHOR_EMAIL = "gen.author.email";
 
     String DIR_BASE_RESOURCES = "src/main/resources/";
     String DIR_BASE_JAVA = "src/main/java/";

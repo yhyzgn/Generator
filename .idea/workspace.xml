@@ -7,13 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75882b43-dbe9-4f2f-9137-04ce578be350" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/api/db/TableApi.java" afterPath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/api/db/TableApi.java" />
-      <change beforePath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/MethodSpec.java" afterPath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/MethodSpec.java" />
-      <change beforePath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/TypeSpec.java" afterPath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/TypeSpec.java" />
+      <change beforePath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/common/Const.java" afterPath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/common/Const.java" />
       <change beforePath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/ModelGenerator.java" afterPath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/ModelGenerator.java" />
-      <change beforePath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/model/table/Column.java" afterPath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/model/table/Column.java" />
-      <change beforePath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/utils/DBUtils.java" afterPath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/utils/GenUtils.java" />
+      <change beforePath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/utils/GenUtils.java" afterPath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/utils/GenUtils.java" />
+      <change beforePath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/utils/PropUtils.java" afterPath="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/utils/PropUtils.java" />
+      <change beforePath="$PROJECT_DIR$/simple/src/main/resources/gen-config.properties" afterPath="$PROJECT_DIR$/simple/src/main/resources/gen-config.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -50,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GeneratorHelper.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GeneratorHelper.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/helper/GeneratorHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="34" column="14" lean-forward="true" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+            <state relative-caret-position="503">
+              <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -63,8 +64,50 @@
       <file leaf-file-name="ModelGenerator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/ModelGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="503">
-              <caret line="79" column="41" lean-forward="true" selection-start-line="79" selection-start-column="41" selection-end-line="79" selection-end-column="41" />
+            <state relative-caret-position="1366">
+              <caret line="77" column="0" lean-forward="true" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Const.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/common/Const.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="25" column="59" lean-forward="true" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Generator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/base/Generator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="382">
+              <caret line="130" column="24" lean-forward="true" selection-start-line="119" selection-start-column="8" selection-end-line="130" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PropUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/utils/PropUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="411">
+              <caret line="113" column="49" lean-forward="true" selection-start-line="113" selection-start-column="49" selection-end-line="113" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gen-config.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/simple/src/main/resources/gen-config.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="5" column="22" lean-forward="true" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -73,51 +116,18 @@
       <file leaf-file-name="TableApi.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/api/db/TableApi.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="71" column="80" lean-forward="true" selection-start-line="71" selection-start-column="80" selection-end-line="71" selection-end-column="80" />
+            <state relative-caret-position="441">
+              <caret line="78" column="43" lean-forward="true" selection-start-line="78" selection-start-column="43" selection-end-line="78" selection-end-column="43" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Article.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/simple/src/main/java/com/yhy/generator/simple/common/model/article/Article.java">
+      <file leaf-file-name="GenUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/utils/GenUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-              <folding>
-                <element signature="e#559#560#0" expanded="true" />
-                <element signature="e#584#585#0" expanded="true" />
-                <element signature="e#621#622#0" expanded="true" />
-                <element signature="e#649#650#0" expanded="true" />
-                <element signature="e#681#682#0" expanded="true" />
-                <element signature="e#709#710#0" expanded="true" />
-                <element signature="e#751#752#0" expanded="true" />
-                <element signature="e#785#786#0" expanded="true" />
-                <element signature="e#819#820#0" expanded="true" />
-                <element signature="e#849#850#0" expanded="true" />
-                <element signature="e#895#896#0" expanded="true" />
-                <element signature="e#933#934#0" expanded="true" />
-                <element signature="e#965#966#0" expanded="true" />
-                <element signature="e#992#993#0" expanded="true" />
-                <element signature="e#1033#1034#0" expanded="true" />
-                <element signature="e#1065#1066#0" expanded="true" />
-                <element signature="e#1100#1101#0" expanded="true" />
-                <element signature="e#1133#1134#0" expanded="true" />
-                <element signature="e#1183#1184#0" expanded="true" />
-                <element signature="e#1227#1228#0" expanded="true" />
-                <element signature="e#1262#1263#0" expanded="true" />
-                <element signature="e#1295#1296#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MapperXmlGenerator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/MapperXmlGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            <state relative-caret-position="841">
+              <caret line="107" column="27" lean-forward="true" selection-start-line="107" selection-start-column="27" selection-end-line="107" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -155,11 +165,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/gen/XmlGenerator.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/init/InitializerListener.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/abs/AbsGenerator.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/XmlGenerator.java" />
-        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/common/Const.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/api/loader/TableLoader.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/xml/XmlFile.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/utils/ConvertUtils.java" />
@@ -167,7 +175,6 @@
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/file/XmlFile.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/utils/IOUtils.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/xml/Element.java" />
-        <option value="$PROJECT_DIR$/simple/src/main/resources/gen-config.properties" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/ImportSpec.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/TypeSpec.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/Scope.java" />
@@ -191,12 +198,10 @@
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/ParamSpec.java" />
         <option value="$PROJECT_DIR$/simple/src/main/java/com/yhy/generator/simple/controller/HelloController.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/utils/DBUtils.java" />
-        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/utils/GenUtils.java" />
         <option value="$PROJECT_DIR$/simple/src/main/java/com/yhy/generator/simple/common/model/generator/Generator.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/MethodSpec.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/java/type/TypeSpec.java" />
         <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/model/table/Column.java" />
-        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/ModelGenerator.java" />
         <option value="$PROJECT_DIR$/simple/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/simple/pom.xml" />
@@ -204,8 +209,13 @@
         <option value="$PROJECT_DIR$/simple/src/main/resources/log4j2.xml" />
         <option value="$PROJECT_DIR$/simple/src/test/java/com/yhy/generator/simple/test/AppTest.java" />
         <option value="$PROJECT_DIR$/simple/src/main/resources/spring/spring-mvc.xml" />
-        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/api/db/TableApi.java" />
         <option value="$PROJECT_DIR$/simple/src/main/java/com/yhy/generator/simple/common/model/article/Article.java" />
+        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/ModelGenerator.java" />
+        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/api/db/TableApi.java" />
+        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/common/Const.java" />
+        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/utils/PropUtils.java" />
+        <option value="$PROJECT_DIR$/simple/src/main/resources/gen-config.properties" />
+        <option value="$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/utils/GenUtils.java" />
       </list>
     </option>
   </component>
@@ -259,6 +269,12 @@
             <id />
           </State>
           <State>
+            <id>Android &gt; Lint &gt; Internationalization</id>
+          </State>
+          <State>
+            <id>Android &gt; Lint &gt; Usability &gt; Icons</id>
+          </State>
+          <State>
             <id>Class structureJava</id>
           </State>
           <State>
@@ -266,6 +282,12 @@
           </State>
           <State>
             <id>Google Web Toolkit issues</id>
+          </State>
+          <State>
+            <id>Internationalization issues</id>
+          </State>
+          <State>
+            <id>Internationalization issuesJava</id>
           </State>
           <State>
             <id>JUnit issuesJava</id>
@@ -303,7 +325,15 @@
           <State>
             <id>Threading issuesJava</id>
           </State>
+          <State>
+            <id>WebSocket issues</id>
+          </State>
         </expanded-state>
+        <selected-state>
+          <State>
+            <id>Android</id>
+          </State>
+        </selected-state>
       </profile-state>
     </entry>
   </component>
@@ -475,6 +505,18 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="yhy" type="462c0819:PsiDirectoryNode" />
               <item name="generator" type="462c0819:PsiDirectoryNode" />
+              <item name="helper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Generator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Generator" type="462c0819:PsiDirectoryNode" />
+              <item name="generator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="yhy" type="462c0819:PsiDirectoryNode" />
+              <item name="generator" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -583,21 +625,6 @@
               <item name="yhy" type="462c0819:PsiDirectoryNode" />
               <item name="generator" type="462c0819:PsiDirectoryNode" />
               <item name="simple" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="article" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Generator" type="462c0819:PsiDirectoryNode" />
-              <item name="simple" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="yhy" type="462c0819:PsiDirectoryNode" />
-              <item name="generator" type="462c0819:PsiDirectoryNode" />
-              <item name="simple" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -634,7 +661,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="project.propDebugger" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -866,7 +893,7 @@
       <workItem from="1514422576219" duration="23971000" />
       <workItem from="1514509915751" duration="1471000" />
       <workItem from="1514511472428" duration="20870000" />
-      <workItem from="1514855060843" duration="18450000" />
+      <workItem from="1514855060843" duration="20485000" />
     </task>
     <servers />
   </component>
@@ -903,7 +930,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108020000" />
+    <option name="totallyTimeSpent" value="110055000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -955,27 +982,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/javax/servlet/javax.servlet-api/4.0.0/javax.servlet-api-4.0.0.jar!/javax/servlet/annotation/WebListener.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="17" column="30" lean-forward="true" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Java/jdk1.8.0_151/jre/lib/ext/nashorn.jar!/jdk/nashorn/internal/ir/annotations/Reference.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="11" column="29" lean-forward="true" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Java/jdk1.8.0_151/src.zip!/javax/annotation/Resource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="58" column="41" lean-forward="false" selection-start-line="58" selection-start-column="41" selection-end-line="58" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/core/xml/Element.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="820">
@@ -1024,16 +1030,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
           <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/base/Generator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="55" column="25" lean-forward="true" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
           <folding>
-            <element signature="e#1284#1285#0" expanded="false" />
-            <element signature="e#1321#1322#0" expanded="false" />
+            <element signature="e#599#600#0" expanded="false" />
+            <element signature="e#626#627#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1160,14 +1159,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/Java/jdk1.8.0_151/src.zip!/java/lang/Class.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="355" column="0" lean-forward="true" selection-start-line="355" selection-start-column="0" selection-end-line="355" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
@@ -1180,14 +1171,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/simple/src/main/resources/gen-config.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -1212,14 +1195,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="274">
           <caret line="27" column="35" lean-forward="false" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/utils/GenUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="98" column="23" lean-forward="false" selection-start-line="98" selection-start-column="23" selection-end-line="98" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -1370,58 +1345,93 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/helper/GeneratorHelper.java">
+    <entry file="jar://D:/Java/jdk1.8.0_151/src.zip!/java/lang/Class.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="34" column="14" lean-forward="true" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+        <state relative-caret-position="419">
+          <caret line="2215" column="43" lean-forward="false" selection-start-line="2215" selection-start-column="24" selection-end-line="2215" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/ModelGenerator.java">
+    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/base/Generator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="79" column="41" lean-forward="true" selection-start-line="79" selection-start-column="41" selection-end-line="79" selection-end-column="41" />
+        <state relative-caret-position="382">
+          <caret line="130" column="24" lean-forward="true" selection-start-line="119" selection-start-column="8" selection-end-line="130" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/common/Const.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="25" column="59" lean-forward="true" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Java/jdk1.8.0_151/src.zip!/java/util/Properties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="315" column="33" lean-forward="false" selection-start-line="315" selection-start-column="29" selection-end-line="315" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/utils/PropUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="113" column="49" lean-forward="true" selection-start-line="113" selection-start-column="49" selection-end-line="113" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/api/db/TableApi.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="71" column="80" lean-forward="true" selection-start-line="71" selection-start-column="80" selection-end-line="71" selection-end-column="80" />
+        <state relative-caret-position="441">
+          <caret line="78" column="43" lean-forward="true" selection-start-line="78" selection-start-column="43" selection-end-line="78" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/simple/src/main/java/com/yhy/generator/simple/common/model/article/Article.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+        <state relative-caret-position="336">
+          <caret line="16" column="9" lean-forward="false" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/utils/GenUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="841">
+          <caret line="107" column="27" lean-forward="true" selection-start-line="107" selection-start-column="27" selection-end-line="107" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/generator/ModelGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1366">
+          <caret line="77" column="0" lean-forward="true" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
           <folding>
-            <element signature="e#559#560#0" expanded="true" />
-            <element signature="e#584#585#0" expanded="true" />
-            <element signature="e#621#622#0" expanded="true" />
-            <element signature="e#649#650#0" expanded="true" />
-            <element signature="e#681#682#0" expanded="true" />
-            <element signature="e#709#710#0" expanded="true" />
-            <element signature="e#751#752#0" expanded="true" />
-            <element signature="e#785#786#0" expanded="true" />
-            <element signature="e#819#820#0" expanded="true" />
-            <element signature="e#849#850#0" expanded="true" />
-            <element signature="e#895#896#0" expanded="true" />
-            <element signature="e#933#934#0" expanded="true" />
-            <element signature="e#965#966#0" expanded="true" />
-            <element signature="e#992#993#0" expanded="true" />
-            <element signature="e#1033#1034#0" expanded="true" />
-            <element signature="e#1065#1066#0" expanded="true" />
-            <element signature="e#1100#1101#0" expanded="true" />
-            <element signature="e#1133#1134#0" expanded="true" />
-            <element signature="e#1183#1184#0" expanded="true" />
-            <element signature="e#1227#1228#0" expanded="true" />
-            <element signature="e#1262#1263#0" expanded="true" />
-            <element signature="e#1295#1296#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simple/src/main/resources/gen-config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="22" lean-forward="true" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator/src/main/java/com/yhy/generator/helper/GeneratorHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

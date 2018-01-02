@@ -1,9 +1,11 @@
 package com.yhy.generator.utils;
 
+import com.yhy.generator.common.Const;
 import com.yhy.generator.model.table.Column;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.Locale;
 
 /**
  * author : 颜洪毅
@@ -118,5 +120,18 @@ public class GenUtils {
                 return BigDecimal.class;
         }
         return String.class;
+    }
+
+    public static Column normalizeFieldName(Column column) {
+        String rule = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.GEN_TABLE_FIELD_RULE);
+        String replace = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.GEN_TABLE_FIELD_REPLACE);
+        if (StringUtils.isEmpty(rule)) {
+            rule = "^_";
+        }
+        if (null == replace) {
+            replace = "";
+        }
+        column.setName(ConvertUtils.line2Hump(column.getRealName().replaceAll(rule, replace).toLowerCase(Locale.getDefault())));
+        return column;
     }
 }

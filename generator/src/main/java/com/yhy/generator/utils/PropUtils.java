@@ -93,6 +93,11 @@ public class PropUtils {
         return null != prop ? prop.getProperty(key) : null;
     }
 
+    public static String get(String propName, String key, String defValue) {
+        String str = get(propName, key);
+        return StringUtils.isEmpty(str) ? defValue : str;
+    }
+
     public static Properties properties(String propName) {
         return propMap.get(propName);
     }
