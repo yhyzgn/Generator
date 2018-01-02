@@ -2,6 +2,7 @@ package com.yhy.generator.utils;
 
 import com.yhy.generator.model.table.Column;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 /**
@@ -12,8 +13,8 @@ import java.sql.Date;
  * desc   :
  */
 @SuppressWarnings("ALL")
-public class DBUtils {
-    private DBUtils() {
+public class GenUtils {
+    private GenUtils() {
         throw new UnsupportedOperationException("Can not instantiate utils class.");
     }
 
@@ -79,7 +80,43 @@ public class DBUtils {
             case "timestamp":
                 column.setDefValue(DateUtils.getTime(defValue));
                 break;
+            case "decimal":
+                column.setDefValue(new BigDecimal(defValue.toString()));
+                break;
         }
         return column;
+    }
+
+    public static Class<?> mapColumnType(Column column) {
+        if (null == column) {
+            return null;
+        }
+        String dataType = column.getDataType();
+        if (StringUtils.isEmpty(dataType)) {
+            dataType = "varchar";
+        }
+        switch (dataType) {
+            case "int":
+            case "tinyint":
+            case "smallint":
+            case "mediumint":
+            case "integer":
+                return Integer.class;
+            case "char":
+            case "varchar":
+            case "text":
+            case "mediumtext":
+            case "longtext":
+                return String.class;
+            case "bigint":
+            case "datetime":
+            case "date":
+            case "time":
+            case "timestamp":
+                return Long.class;
+            case "decimal":
+                return BigDecimal.class;
+        }
+        return String.class;
     }
 }

@@ -4,7 +4,8 @@ import com.yhy.generator.api.db.base.BaseDBApi;
 import com.yhy.generator.helper.DBHelper;
 import com.yhy.generator.model.table.Column;
 import com.yhy.generator.model.table.TableInfo;
-import com.yhy.generator.utils.DBUtils;
+import com.yhy.generator.utils.ConvertUtils;
+import com.yhy.generator.utils.GenUtils;
 import com.yhy.generator.utils.DateUtils;
 import com.yhy.generator.utils.StringUtils;
 
@@ -25,7 +26,7 @@ public class TableApi extends BaseDBApi {
     public List<TableInfo> loadTableInfoList() {
         DBHelper helper = new DBHelper(getDriver(), getUrl(), getUsername(), getPassword());
         try {
-            List<Map<String, Object>> result = helper.select("SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA = ?", getDbName());
+            List<Map<String, Object>> result = helper.select("SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA = ? AND TABLE_NAME <> ?", getDbName(), "generator");
             if (null != result && !result.isEmpty()) {
                 List<TableInfo> tableInfoList = new ArrayList<>();
                 TableInfo tableInfo;
@@ -68,12 +69,13 @@ public class TableApi extends BaseDBApi {
                     column.setTableSchema(String.valueOf(item.get("TABLE_SCHEMA")));
                     column.setNullable(StringUtils.equals("YES", String.valueOf(item.get("IS_NULLABLE"))));
                     column.setExtra(String.valueOf(item.get("EXTRA")));
-                    column.setName(String.valueOf(item.get("COLUMN_NAME")));
+                    column.setRealName(String.valueOf(item.get("COLUMN_NAME")));
+                    column.setName(ConvertUtils.line2Hump(column.getRealName()));
                     column.setPosition(Integer.valueOf(String.valueOf(item.get("ORDINAL_POSITION"))));
                     column.setDataType(String.valueOf(item.get("DATA_TYPE")));
                     column.setComment(String.valueOf(item.get("COLUMN_COMMENT")));
-                    DBUtils.setKey(column, item.get("COLUMN_KEY"));
-                    DBUtils.setDefValue(column, item.get("COLUMN_DEFAULT"));
+                    GenUtils.setKey(column, item.get("COLUMN_KEY"));
+                    GenUtils.setDefValue(column, item.get("COLUMN_DEFAULT"));
                     columnList.add(column);
                 }
                 return columnList;

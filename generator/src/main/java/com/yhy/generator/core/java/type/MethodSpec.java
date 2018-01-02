@@ -194,7 +194,7 @@ public class MethodSpec implements AbsSpec {
                 sb.append(modifier.getModifier()).append(" ");
             }
         }
-        if (null != retType) {
+        if (null != retType && retType != Void.class) {
             sb.append(retType.getSimpleName());
         } else {
             sb.append("void");

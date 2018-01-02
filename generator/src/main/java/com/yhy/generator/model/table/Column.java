@@ -13,6 +13,7 @@ public class Column<T> {
     private String tableName;
     private String tableSchema;
     private String extra;
+    private String realName;
     private String name;
     private boolean primary;
     private boolean foreign;
@@ -59,6 +60,14 @@ public class Column<T> {
 
     public void setExtra(String extra) {
         this.extra = extra;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     public String getName() {

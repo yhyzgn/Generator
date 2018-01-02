@@ -264,10 +264,12 @@ public class TypeSpec implements AbsSpec {
         }
 
         if (null != methodSpecList && !methodSpecList.isEmpty()) {
-            for (MethodSpec method : methodSpecList) {
-                sb.append(method.string(indent + "\t"));
+            for (int i = 0; i < methodSpecList.size(); i++) {
+                sb.append(methodSpecList.get(i).string(indent + "\t")).append(lineSeparator);
+                if (i < methodSpecList.size() - 1) {
+                    sb.append(lineSeparator);
+                }
             }
-            sb.append(lineSeparator);
         }
 
         sb.append("}");
