@@ -12,4 +12,6 @@ import java.util.List;
 public interface AbsSpec {
 
     List<Class<?>> getClassList();
+
+    String string(String indent);
 }

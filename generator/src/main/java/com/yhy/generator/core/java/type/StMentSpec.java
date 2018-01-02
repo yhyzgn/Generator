@@ -31,6 +31,7 @@ public class StMentSpec implements AbsSpec {
 
     public StMentSpec(String pattStMent) {
         this.pattStMent = pattStMent;
+        this.statement = pattStMent;
         curClassList = new ArrayList<>();
         stMentSpecList = new ArrayList<>();
     }
@@ -116,6 +117,11 @@ public class StMentSpec implements AbsSpec {
         return getAllClassList(this);
     }
 
+    @Override
+    public String string(String indent) {
+        return getString(this, indent);
+    }
+
     private List<Class<?>> getAllClassList(StMentSpec stMentSpec) {
         List<Class<?>> result = new ArrayList<>();
         if (null != stMentSpec.getStMentSpecList()) {
@@ -129,11 +135,6 @@ public class StMentSpec implements AbsSpec {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return getString(this, "");
-    }
-
     private String getString(StMentSpec stMentSpec, String indent) {
         StringBuilder sb = new StringBuilder();
 
@@ -143,10 +144,11 @@ public class StMentSpec implements AbsSpec {
             for (StMentSpec st : stMentSpec.getStMentSpecList()) {
                 sb.append(getString(st, indent + "\t"));
             }
-            sb.append("}");
+            sb.append(indent).append("}");
         } else {
-            sb.append(";").append(System.getProperty("line.separator"));
+            sb.append(";");
         }
+        sb.append(System.getProperty("line.separator"));
 
         return sb.toString();
     }

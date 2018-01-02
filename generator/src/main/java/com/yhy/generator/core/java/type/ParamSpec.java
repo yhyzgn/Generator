@@ -66,25 +66,27 @@ public class ParamSpec implements AbsSpec {
 
     public List<Class<?>> getClassList() {
         List<Class<?>> result = new ArrayList<>();
+        if (null != annoSpec) {
+            result.add(annoSpec.getType());
+        }
         if (null != type) {
             result.add(type);
-        }
-        if (null != complexSpec && null != complexSpec.getClassList()) {
+        } else if (null != complexSpec && null != complexSpec.getClassList()) {
             result.addAll(complexSpec.getClassList());
         }
         return result;
     }
 
     @Override
-    public String toString() {
+    public String string(String indent) {
         StringBuilder sb = new StringBuilder();
         if (null != annoSpec) {
-            sb.append(annoSpec.toString()).append(" ");
+            sb.append(annoSpec.string("")).append(" ");
         }
         if (null != type) {
-            sb.append(type.getName());
+            sb.append(type.getSimpleName());
         } else if (null != complexSpec) {
-            sb.append(complexSpec.toString());
+            sb.append(complexSpec.string(""));
         }
         sb.append(" ").append(name);
         return sb.toString();

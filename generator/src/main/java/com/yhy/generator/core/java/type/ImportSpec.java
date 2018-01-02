@@ -20,11 +20,6 @@ public class ImportSpec implements AbsSpec {
     }
 
     @Override
-    public String toString() {
-        return "import " + type.getName() + ";" + System.getProperty("line.separator");
-    }
-
-    @Override
     public List<Class<?>> getClassList() {
         if (null != type) {
             List<Class<?>> result = new ArrayList<>();
@@ -32,5 +27,10 @@ public class ImportSpec implements AbsSpec {
             return result;
         }
         return null;
+    }
+
+    @Override
+    public String string(String indent) {
+        return "import " + type.getName() + ";" + System.getProperty("line.separator");
     }
 }

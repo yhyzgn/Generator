@@ -45,4 +45,9 @@ public class DocSpec implements AbsSpec {
     public List<Class<?>> getClassList() {
         return null;
     }
+
+    @Override
+    public String string(String indent) {
+        return null;
+    }
 }

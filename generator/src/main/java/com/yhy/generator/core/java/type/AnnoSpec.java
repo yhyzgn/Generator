@@ -26,9 +26,19 @@ public class AnnoSpec implements AbsSpec {
     }
 
     @Override
-    public String toString() {
+    public List<Class<?>> getClassList() {
+        if (null != type) {
+            List<Class<?>> result = new ArrayList<>();
+            result.add(type);
+            return result;
+        }
+        return null;
+    }
+
+    @Override
+    public String string(String indent) {
         StringBuilder sb = new StringBuilder();
-        sb.append("@").append(type.getSimpleName());
+        sb.append(indent).append("@").append(type.getSimpleName());
         if (null != args && args.length > 0) {
             sb.append("(");
             if (args.length == 1) {
@@ -46,15 +56,5 @@ public class AnnoSpec implements AbsSpec {
             sb.append(")");
         }
         return sb.toString();
-    }
-
-    @Override
-    public List<Class<?>> getClassList() {
-        if (null != type) {
-            List<Class<?>> result = new ArrayList<>();
-            result.add(type);
-            return result;
-        }
-        return null;
     }
 }

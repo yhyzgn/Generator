@@ -2,10 +2,16 @@ package com.yhy.generator.simple.test;
 
 import com.yhy.generator.api.db.TableApi;
 import com.yhy.generator.common.Const;
+import com.yhy.generator.core.java.Modifier;
+import com.yhy.generator.core.java.Scope;
+import com.yhy.generator.core.java.type.AnnoSpec;
+import com.yhy.generator.core.java.type.MethodSpec;
+import com.yhy.generator.core.java.type.ParamSpec;
 import com.yhy.generator.core.java.type.StMentSpec;
 import com.yhy.generator.utils.ConvertUtils;
 import com.yhy.generator.utils.PropUtils;
 import com.yhy.generator.utils.StringUtils;
+import org.apache.ibatis.annotations.Param;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -95,9 +101,36 @@ public class AppTest {
         LOGGER.info(stMentSpec.toString());
         LOGGER.info("=========================================");
         StMentSpec stIf = new StMentSpec("if(null != user)");
-        stIf.addStMentSpec(new StMentSpec("$T.out.println(user.getName())").format(TestUser.class));
-        stIf.addStMentSpec(new StMentSpec("$T.out.println(user.getName())").format(TestUser.class));
-        LOGGER.info("\n" + stIf.format().toString());
+        stIf.addStMentSpec(new StMentSpec("$T.out.println(user.getName())").format(System.class));
+        stIf.addStMentSpec(new StMentSpec("$T.out.println(user.getName())").format(System.class));
+        LOGGER.info("\n" + stIf.format().string("\t"));
+        LOGGER.info("=========================================");
+    }
+
+    @Test
+    void testMethod() {
+        MethodSpec methodSpec = new MethodSpec("getUser");
+        methodSpec
+                .setScope(Scope.PUBLIC)
+                .addModifier(Modifier.FINAL)
+                .setRetType(TestUser.class)
+                .addParamSpec(new ParamSpec("user", TestUser.class));
+
+        ParamSpec paramSpec = new ParamSpec("test", String.class);
+        paramSpec.setAnnoSpec(new AnnoSpec(Param.class, "record"));
+
+        methodSpec.addParamSpec(paramSpec);
+
+        StMentSpec stIf = new StMentSpec("if(null != user)");
+        stIf.addStMentSpec(new StMentSpec("$T.out.println(user.getName())").format(System.class));
+        stIf.addStMentSpec(new StMentSpec("$T.out.println(\"哈哈哈哈哈\")").format(System.class));
+        StMentSpec stElse = new StMentSpec("else");
+        stElse.addStMentSpec(new StMentSpec("$T.out.println(\"user为空\")").format(System.class));
+
+        methodSpec.addStMentSpec(stIf).addStMentSpec(stElse);
+        methodSpec.addStMentSpec(new StMentSpec("return user"));
+        LOGGER.info("=========================================");
+        LOGGER.info("\n" + methodSpec.string(""));
         LOGGER.info("=========================================");
     }
 }

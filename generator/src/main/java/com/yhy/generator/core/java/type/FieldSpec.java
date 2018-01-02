@@ -120,18 +120,18 @@ public class FieldSpec implements AbsSpec {
     }
 
     @Override
-    public String toString() {
+    public String string(String indent) {
         StringBuilder sb = new StringBuilder();
         String lineSeparator = System.getProperty("line.separator");
         if (null != docSpec) {
-            sb.append("\t").append("// ").append(docSpec.getValue()).append(lineSeparator);
+            sb.append(indent).append("// ").append(docSpec.getValue()).append(lineSeparator);
         }
         if (null != annoSpecList && !annoSpecList.isEmpty()) {
             for (AnnoSpec anno : annoSpecList) {
-                sb.append("\t").append(anno.toString()).append(lineSeparator);
+                sb.append(anno.string(indent)).append(lineSeparator);
             }
         }
-        sb.append("\t");
+        sb.append(indent);
         sb.append(scope.getScope()).append(" ");
         for (Modifier modifier : modifierList) {
             sb.append(modifier.getModifier()).append(" ");
@@ -140,7 +140,7 @@ public class FieldSpec implements AbsSpec {
         if (null != type) {
             sb.append(type.getSimpleName());
         } else if (null != complexSpec) {
-            sb.append(complexSpec.toString());
+            sb.append(complexSpec.string(indent));
         }
         sb.append(" ").append(name).append(";").append(lineSeparator);
         return sb.toString();

@@ -63,12 +63,12 @@ public class JavaFile implements AbsFile {
         if (null != classList) {
             for (Class<?> clazz : classList) {
                 if (!StringUtils.equals("java.lang", clazz.getPackage().getName()) && !StringUtils.equals(packageName, clazz.getPackage().getName())) {
-                    sb.append(new ImportSpec(clazz).toString());
+                    sb.append(new ImportSpec(clazz).string(""));
                 }
             }
         }
 
-        sb.append(lineSeparator).append(typeSpec.toString());
+        sb.append(lineSeparator).append(typeSpec.string(""));
 
         return sb.toString();
     }

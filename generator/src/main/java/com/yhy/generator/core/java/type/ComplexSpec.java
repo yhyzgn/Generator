@@ -64,6 +64,11 @@ public class ComplexSpec implements AbsSpec {
         return getAllClass(this);
     }
 
+    @Override
+    public String string(String indent) {
+        return getAllClassString(this);
+    }
+
     private List<Class<?>> getAllClass(ComplexSpec type) {
         List<Class<?>> result = new ArrayList<>();
         if (null != type.getType()) {
@@ -80,11 +85,6 @@ public class ComplexSpec implements AbsSpec {
         }
 
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return getAllClassString(this);
     }
 
     private String getAllClassString(ComplexSpec type) {

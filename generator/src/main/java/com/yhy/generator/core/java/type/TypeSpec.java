@@ -209,7 +209,11 @@ public class TypeSpec implements AbsSpec {
     }
 
     @Override
-    public String toString() {
+    public String string(String indent) {
+        return getString("");
+    }
+
+    public String getString(String indent) {
         StringBuilder sb = new StringBuilder();
         String lineSeparator = System.getProperty("line.separator");
 
@@ -222,7 +226,7 @@ public class TypeSpec implements AbsSpec {
         }
         if (null != annoSpecList && !annoSpecList.isEmpty()) {
             for (AnnoSpec anno : annoSpecList) {
-                sb.append(anno.toString()).append(lineSeparator);
+                sb.append(anno.string(indent)).append(lineSeparator);
             }
         }
         sb.append(scope.getScope()).append(" ");
@@ -254,8 +258,16 @@ public class TypeSpec implements AbsSpec {
 
         if (null != fieldSpecList && !fieldSpecList.isEmpty()) {
             for (FieldSpec field : fieldSpecList) {
-                sb.append(field.toString());
+                sb.append(field.string(indent + "\t"));
             }
+            sb.append(lineSeparator);
+        }
+
+        if (null != methodSpecList && !methodSpecList.isEmpty()) {
+            for (MethodSpec method : methodSpecList) {
+                sb.append(method.string(indent + "\t"));
+            }
+            sb.append(lineSeparator);
         }
 
         sb.append("}");

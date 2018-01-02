@@ -6,7 +6,9 @@ import com.yhy.generator.core.java.Scope;
 import com.yhy.generator.core.java.type.*;
 import com.yhy.generator.generator.base.Generator;
 import com.yhy.generator.model.table.Table;
+import jdk.nashorn.internal.ir.annotations.Reference;
 
+import javax.servlet.annotation.WebListener;
 import java.util.List;
 import java.util.Map;
 
@@ -52,6 +54,34 @@ public class ModelGenerator extends Generator<JavaFile> {
 //        test.addModifier(Modifier.STATIC).addModifier(Modifier.FINAL);
         test.setComplexSpec(new ComplexSpec(Map.class).addType(String.class).addChild(new ComplexSpec(List.class).addChild(new ComplexSpec(Map.class).addType(String.class).addType(Integer.class))));
 
+        MethodSpec method = new MethodSpec("getUser");
+        method
+                .setScope(Scope.PUBLIC)
+                .addModifier(Modifier.FINAL)
+                .setRetType(String.class)
+                .addParamSpec(new ParamSpec("user", String.class));
+
+        method.addDocSpec(new DocSpec("@param", "user"));
+        method.addDocSpec(new DocSpec("@param", "test"));
+
+        ParamSpec paramSpec = new ParamSpec("test", String.class);
+        try {
+            paramSpec.setAnnoSpec(new AnnoSpec(Class.forName("org.apache.ibatis.annotations.Param"), "record"));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        method.addParamSpec(paramSpec);
+
+        StMentSpec stIf = new StMentSpec("if(null != test)");
+        stIf.addStMentSpec(new StMentSpec("$T.out.println(test)").format(System.class));
+        stIf.addStMentSpec(new StMentSpec("$T.out.println(\"哈哈哈哈哈\")").format(System.class));
+        StMentSpec stElse = new StMentSpec("else");
+        stElse.addStMentSpec(new StMentSpec("$T.out.println(\"user为空\")").format(System.class));
+
+        method.addStMentSpec(stIf).addStMentSpec(stElse);
+        method.addStMentSpec(new StMentSpec("return test"));
+
         TypeSpec type = new TypeSpec(getModelName());
         type.setScope(Scope.PUBLIC);
         type.addModifier(Modifier.FINAL);
@@ -69,6 +99,7 @@ public class ModelGenerator extends Generator<JavaFile> {
         type.addFieldSpec(username);
         type.addFieldSpec(age);
         type.addFieldSpec(test);
+        type.addMethodSpec(method);
 
         javaFile.setTypeSpec(type);
 
