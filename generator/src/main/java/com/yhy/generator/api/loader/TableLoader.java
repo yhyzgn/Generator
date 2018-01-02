@@ -1,6 +1,7 @@
 package com.yhy.generator.api.loader;
 
 import com.yhy.generator.api.db.TableApi;
+import com.yhy.generator.model.table.Column;
 import com.yhy.generator.model.table.Table;
 import com.yhy.generator.model.table.TableInfo;
 
@@ -25,10 +26,19 @@ public class TableLoader {
         }
         List<Table> tableList = new ArrayList<>();
         Table table;
+        List<Column> columnList;
         for (TableInfo info : infoList) {
             table = new Table();
             table.setInfo(info);
-            table.setColumnList(api.getColumnList(info.getName()));
+            columnList = api.getColumnList(info.getName());
+            if (null != columnList) {
+                for (Column column : columnList) {
+                    if (column.getPrimary()) {
+                        table.setPrimary(column);
+                    }
+                }
+            }
+            table.setColumnList(columnList);
             tableList.add(table);
         }
         return tableList;

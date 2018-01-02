@@ -1,6 +1,5 @@
 package com.yhy.generator.generator;
 
-import com.yhy.generator.common.Const;
 import com.yhy.generator.core.file.JavaFile;
 import com.yhy.generator.core.java.Scope;
 import com.yhy.generator.core.java.type.*;
@@ -9,10 +8,6 @@ import com.yhy.generator.model.table.Column;
 import com.yhy.generator.model.table.Table;
 import com.yhy.generator.utils.ConvertUtils;
 import com.yhy.generator.utils.GenUtils;
-import com.yhy.generator.utils.PropUtils;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * author : 颜洪毅
@@ -45,11 +40,12 @@ public class ModelGenerator extends Generator<JavaFile> {
 
         TypeSpec type = new TypeSpec(getModelName());
         type.setScope(Scope.PUBLIC);
-        type.addDocSpec(new DocSpec("author :", PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.GEN_AUTHOR_NAME, "颜洪毅")));
-        type.addDocSpec(new DocSpec("e-mail :", PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.GEN_AUTHOR_EMAIL, "yhyzgn@gmail.com")));
-        type.addDocSpec(new DocSpec("time   :", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
-        type.addDocSpec(new DocSpec("version:", "1.0.0"));
-        type.addDocSpec(new DocSpec("desc   :", table.getInfo().getComment()));
+//        type.addDocSpec(new DocSpec("author :", PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.GEN_AUTHOR_NAME, "颜洪毅")));
+//        type.addDocSpec(new DocSpec("e-mail :", PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.GEN_AUTHOR_EMAIL, "yhyzgn@gmail.com")));
+//        type.addDocSpec(new DocSpec("time   :", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
+//        type.addDocSpec(new DocSpec("version:", "1.0.0"));
+//        type.addDocSpec(new DocSpec("desc   :", table.getInfo().getComment()));
+        GenUtils.genClassAnno(table, type);
 
         if (null != table.getColumnList() && !table.getColumnList().isEmpty()) {
             FieldSpec field;
@@ -78,5 +74,9 @@ public class ModelGenerator extends Generator<JavaFile> {
 
         javaFile.setTypeSpec(type);
         return javaFile;
+    }
+
+    public String getReferenceModel() {
+        return getPackageName() + "." + getModelName();
     }
 }

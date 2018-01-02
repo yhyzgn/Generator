@@ -1,7 +1,6 @@
 package com.yhy.generator.generator.base;
 
 import com.yhy.generator.common.Const;
-import com.yhy.generator.core.file.JavaFile;
 import com.yhy.generator.core.file.abs.AbsFile;
 import com.yhy.generator.helper.FileWriter;
 import com.yhy.generator.model.table.Table;
@@ -126,6 +125,7 @@ public abstract class Generator<T extends AbsFile> {
             tableDirReplace = "";
         }
         tableDir = table.getInfo().getName().replaceAll(tableDirRule, tableDirReplace).toLowerCase(Locale.getDefault());
+        tableDir = tableDir.replaceAll("_", "");
         packageName += "." + tableDir;
         modelName = ConvertUtils.caseFirstCharUpper(tableDir);
         tableDir += "/";

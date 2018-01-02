@@ -2,10 +2,7 @@ package com.yhy.generator.helper;
 
 import com.yhy.generator.api.loader.TableLoader;
 import com.yhy.generator.core.file.JavaFile;
-import com.yhy.generator.core.xml.Attribute;
-import com.yhy.generator.core.xml.Element;
-import com.yhy.generator.core.file.XmlFile;
-import com.yhy.generator.generator.MapperXmlGenerator;
+import com.yhy.generator.generator.MapperGenerator;
 import com.yhy.generator.generator.ModelGenerator;
 import com.yhy.generator.model.table.Table;
 import org.slf4j.Logger;
@@ -33,8 +30,12 @@ public class GeneratorHelper {
         }
 
         ModelGenerator modelGenerator = new ModelGenerator(table);
-        JavaFile javaFile = modelGenerator.generate();
-        LOGGER.info("\n=================================================\n" + javaFile + "\n=================================================");
+        JavaFile model = modelGenerator.generate();
+        LOGGER.info("\n=================================================\n" + model + "\n=================================================");
+
+        MapperGenerator mapperGenerator = new MapperGenerator(table, modelGenerator.getReferenceModel());
+        JavaFile mapper = mapperGenerator.generate();
+        LOGGER.info("\n=================================================\n" + mapper + "\n=================================================");
 
 //        MapperXmlGenerator xmlGenerator = new MapperXmlGenerator(table);
 //        xmlGenerator.generate();

@@ -1,10 +1,15 @@
 package com.yhy.generator.utils;
 
 import com.yhy.generator.common.Const;
+import com.yhy.generator.core.java.Scope;
+import com.yhy.generator.core.java.type.DocSpec;
+import com.yhy.generator.core.java.type.TypeSpec;
 import com.yhy.generator.model.table.Column;
+import com.yhy.generator.model.table.Table;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 /**
@@ -133,5 +138,13 @@ public class GenUtils {
         }
         column.setName(ConvertUtils.line2Hump(column.getRealName().replaceAll(rule, replace).toLowerCase(Locale.getDefault())));
         return column;
+    }
+
+    public static void genClassAnno(Table table, TypeSpec type) {
+        type.addDocSpec(new DocSpec("author :", PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.GEN_AUTHOR_NAME, "颜洪毅")));
+        type.addDocSpec(new DocSpec("e-mail :", PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.GEN_AUTHOR_EMAIL, "yhyzgn@gmail.com")));
+        type.addDocSpec(new DocSpec("time   :", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date())));
+        type.addDocSpec(new DocSpec("version:", "1.0.0"));
+        type.addDocSpec(new DocSpec("desc   :", table.getInfo().getComment()));
     }
 }

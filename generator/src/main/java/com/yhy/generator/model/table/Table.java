@@ -12,6 +12,7 @@ import java.util.List;
 public class Table {
     private TableInfo info;
     private List<Column> columnList;
+    private Column primary;
 
     public TableInfo getInfo() {
         return info;
@@ -27,5 +28,13 @@ public class Table {
 
     public void setColumnList(List<Column> columnList) {
         this.columnList = columnList;
+    }
+
+    public Column getPrimary() {
+        return primary;
+    }
+
+    public void setPrimary(Column primary) {
+        this.primary = primary;
     }
 }

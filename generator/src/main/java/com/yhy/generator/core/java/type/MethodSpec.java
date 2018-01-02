@@ -21,6 +21,7 @@ public class MethodSpec implements AbsSpec {
     private Scope scope;
     private List<Modifier> modifierList;
     private Class<?> retType;
+    private ComplexSpec retComplex;
     private List<ParamSpec> paramSpecList;
     private boolean hasBody;
     private List<StMentSpec> stMentSpecList;
@@ -105,6 +106,15 @@ public class MethodSpec implements AbsSpec {
         return this;
     }
 
+    public ComplexSpec getRetComplex() {
+        return retComplex;
+    }
+
+    public MethodSpec setRetComplex(ComplexSpec retComplex) {
+        this.retComplex = retComplex;
+        return this;
+    }
+
     public List<ParamSpec> getParamSpecList() {
         return paramSpecList;
     }
@@ -158,6 +168,8 @@ public class MethodSpec implements AbsSpec {
         }
         if (null != retType && retType != Void.class) {
             result.add(retType);
+        } else if (null != retComplex) {
+            result.addAll(retComplex.getClassList());
         }
         if (null != paramSpecList && !paramSpecList.isEmpty()) {
             for (ParamSpec paramSpec : paramSpecList) {
@@ -196,6 +208,8 @@ public class MethodSpec implements AbsSpec {
         }
         if (null != retType && retType != Void.class) {
             sb.append(retType.getSimpleName());
+        } else if (null != retComplex) {
+            sb.append(retComplex.string(indent));
         } else {
             sb.append("void");
         }
