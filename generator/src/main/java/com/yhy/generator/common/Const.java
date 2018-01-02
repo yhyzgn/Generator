@@ -13,10 +13,10 @@ public interface Const {
     String PROP_GEN_ENABLE = "gen.enable";
     String PROP_GEN_PROJECT_ROOT = "gen.project.root";
 
-    String PROP_GEN_SUB_MAPPER_XML_DIR = "gen.sub.mapper.xml.dir";
-    String PROP_GEN_SUB_MAPPER_PACKAGE = "gen.sub.mapper.package";
-    String PROP_GEN_SUB_SERVICE_PACKAGE = "gen.sub.service.package";
-    String PROP_GEN_SUB_MODEL_PACKAGE = "gen.sub.model.package";
+    String PROP_GEN_SUB_DIR_MAPPER_XML = "gen.sub.dir.mapper.xml";
+    String PROP_GEN_SUB_PACKAGE_MAPPER = "gen.sub.package.mapper";
+    String PROP_GEN_SUB_PACKAGE_SERVICE = "gen.sub.package.service";
+    String PROP_GEN_SUB_PACKAGE_MODEL = "gen.sub.package.model";
 
     String PROP_GEN_JDBC_DRIVER = "gen.jdbc.driver";
     String PROP_GEN_JDBC_URL = "gen.jdbc.url";

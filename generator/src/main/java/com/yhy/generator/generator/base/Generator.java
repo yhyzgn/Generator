@@ -34,7 +34,7 @@ public abstract class Generator<T extends AbsFile> {
         this.table = table;
         fileType = fileType();
         if (null == fileType) {
-            fileType = FileType.MAPPER_XML;
+            fileType = FileType.MODEL;
         }
 
         baseDir();
@@ -107,6 +107,14 @@ public abstract class Generator<T extends AbsFile> {
         return modelName + "Service";
     }
 
+    public String getServiceImplFileName() {
+        return modelName + "ServiceImpl.java";
+    }
+
+    public String getServiceImplName() {
+        return modelName + "ServiceImpl";
+    }
+
     public String getPackageName() {
         return packageName;
     }
@@ -134,19 +142,24 @@ public abstract class Generator<T extends AbsFile> {
     private void baseDir() {
         switch (fileType) {
             case MODEL:
-                packageName = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_MODEL_PACKAGE);
+                packageName = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_PACKAGE_MODEL);
                 baseDir = Const.DIR_BASE_JAVA + normalizeDir(packageName);
                 break;
             case MAPPER_XML:
-                String subDir = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_MAPPER_XML_DIR);
+                String subDir = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_DIR_MAPPER_XML);
                 baseDir = Const.DIR_BASE_RESOURCES + normalizeDir(subDir);
                 break;
             case MAPPER_JAVA:
-                packageName = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_MAPPER_PACKAGE);
+                packageName = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_PACKAGE_MAPPER);
                 baseDir = Const.DIR_BASE_JAVA + normalizeDir(packageName);
                 break;
             case SERVICE:
-                packageName = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_SERVICE_PACKAGE);
+                packageName = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_PACKAGE_SERVICE);
+                baseDir = Const.DIR_BASE_JAVA + normalizeDir(packageName);
+                break;
+            case SERVICE_IMPL:
+                packageName = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_PACKAGE_SERVICE);
+                packageName += ".impl";
                 baseDir = Const.DIR_BASE_JAVA + normalizeDir(packageName);
                 break;
         }
@@ -168,6 +181,6 @@ public abstract class Generator<T extends AbsFile> {
     }
 
     public enum FileType {
-        MAPPER_XML, MAPPER_JAVA, MODEL, SERVICE
+        MAPPER_XML, MAPPER_JAVA, MODEL, SERVICE, SERVICE_IMPL
     }
 }

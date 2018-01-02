@@ -1,4 +1,4 @@
-package com.yhy.generator.simple.controller;
+package com.yhy.generator.simple.module.controller;
 
 import com.yhy.generator.api.db.TableApi;
 import com.yhy.generator.api.loader.TableLoader;
@@ -8,7 +8,6 @@ import com.yhy.generator.model.table.Column;
 import com.yhy.generator.model.table.Table;
 import com.yhy.generator.model.table.TableInfo;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

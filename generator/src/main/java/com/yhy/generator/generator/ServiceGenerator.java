@@ -17,29 +17,29 @@ import java.util.Locale;
  * version: 1.0.0
  * desc   :
  */
-public class MapperGenerator extends Generator<JavaFile> {
+public class ServiceGenerator extends Generator<JavaFile> {
     private String referenceModel;
 
-    public MapperGenerator(Table table, String referenceModel) {
+    public ServiceGenerator(Table table, String referenceModel) {
         super(table);
         this.referenceModel = referenceModel;
     }
 
     @Override
     protected FileType fileType() {
-        return FileType.MAPPER_JAVA;
+        return FileType.SERVICE;
     }
 
     @Override
     protected JavaFile getDataFile() {
-        JavaFile javaFile = new JavaFile(getPackageName(), getMapperName());
+        JavaFile javaFile = new JavaFile(getPackageName(), getServiceName());
 
-        TypeSpec mapper = new TypeSpec(getMapperName());
-        mapper.setScope(Scope.PUBLIC);
-        mapper.setInter(true);
-        GenUtils.genClassDoc(table, mapper);
+        TypeSpec service = new TypeSpec(getServiceName());
+        service.setScope(Scope.PUBLIC);
+        service.setInter(true);
+        GenUtils.genClassDoc(table, service);
         try {
-            mapper.addAnnoSpec(new AnnoSpec(Class.forName("org.springframework.stereotype.Repository")));
+            service.addAnnoSpec(new AnnoSpec(Class.forName("org.springframework.stereotype.Service")));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -94,18 +94,22 @@ public class MapperGenerator extends Generator<JavaFile> {
             deleteById.addParamSpec(new ParamSpec(table.getPrimary().getName(), GenUtils.mapColumnType(table.getPrimary())));
         }
 
-        mapper.addMethodSpec(insert);
+        service.addMethodSpec(insert);
         if (null != selectById) {
-            mapper.addMethodSpec(selectById);
+            service.addMethodSpec(selectById);
         }
-        mapper.addMethodSpec(selectAll);
-        mapper.addMethodSpec(update);
-        mapper.addMethodSpec(delete);
+        service.addMethodSpec(selectAll);
+        service.addMethodSpec(update);
+        service.addMethodSpec(delete);
         if (null != deleteById) {
-            mapper.addMethodSpec(deleteById);
+            service.addMethodSpec(deleteById);
         }
 
-        javaFile.setTypeSpec(mapper);
+        javaFile.setTypeSpec(service);
         return javaFile;
+    }
+
+    public String getReferenceService() {
+        return getPackageName() + "." + getServiceName();
     }
 }

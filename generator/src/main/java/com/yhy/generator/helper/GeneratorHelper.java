@@ -4,6 +4,7 @@ import com.yhy.generator.api.loader.TableLoader;
 import com.yhy.generator.core.file.JavaFile;
 import com.yhy.generator.generator.MapperGenerator;
 import com.yhy.generator.generator.ModelGenerator;
+import com.yhy.generator.generator.ServiceGenerator;
 import com.yhy.generator.model.table.Table;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +37,10 @@ public class GeneratorHelper {
         MapperGenerator mapperGenerator = new MapperGenerator(table, modelGenerator.getReferenceModel());
         JavaFile mapper = mapperGenerator.generate();
         LOGGER.info("\n=================================================\n" + mapper + "\n=================================================");
+
+        ServiceGenerator serviceGenerator = new ServiceGenerator(table, modelGenerator.getReferenceModel());
+        JavaFile service = serviceGenerator.generate();
+        LOGGER.info("\n=================================================\n" + service + "\n=================================================");
 
 //        MapperXmlGenerator xmlGenerator = new MapperXmlGenerator(table);
 //        xmlGenerator.generate();

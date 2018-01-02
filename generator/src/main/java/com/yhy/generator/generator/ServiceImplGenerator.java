@@ -17,29 +17,37 @@ import java.util.Locale;
  * version: 1.0.0
  * desc   :
  */
-public class MapperGenerator extends Generator<JavaFile> {
+public class ServiceImplGenerator extends Generator<JavaFile> {
     private String referenceModel;
+    private String referenceService;
 
-    public MapperGenerator(Table table, String referenceModel) {
+    public ServiceImplGenerator(Table table, String referenceModel, String referenceService) {
         super(table);
         this.referenceModel = referenceModel;
+        this.referenceService = referenceService;
     }
 
     @Override
     protected FileType fileType() {
-        return FileType.MAPPER_JAVA;
+        return FileType.SERVICE_IMPL;
     }
 
     @Override
     protected JavaFile getDataFile() {
-        JavaFile javaFile = new JavaFile(getPackageName(), getMapperName());
+        JavaFile javaFile = new JavaFile(getPackageName(), getServiceName());
 
-        TypeSpec mapper = new TypeSpec(getMapperName());
-        mapper.setScope(Scope.PUBLIC);
-        mapper.setInter(true);
-        GenUtils.genClassDoc(table, mapper);
+        TypeSpec service = new TypeSpec(getServiceName());
+        service.setScope(Scope.PUBLIC);
+        GenUtils.genClassDoc(table, service);
+
         try {
-            mapper.addAnnoSpec(new AnnoSpec(Class.forName("org.springframework.stereotype.Repository")));
+            service.addInter(Class.forName(referenceService));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            service.addAnnoSpec(new AnnoSpec(Class.forName("org.springframework.stereotype.Service")));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -51,6 +59,7 @@ public class MapperGenerator extends Generator<JavaFile> {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        insert.addStMentSpec(new StMentSpec(""));
 
         MethodSpec selectById = null;
         if (null != table.getPrimary()) {
@@ -94,18 +103,18 @@ public class MapperGenerator extends Generator<JavaFile> {
             deleteById.addParamSpec(new ParamSpec(table.getPrimary().getName(), GenUtils.mapColumnType(table.getPrimary())));
         }
 
-        mapper.addMethodSpec(insert);
+        service.addMethodSpec(insert);
         if (null != selectById) {
-            mapper.addMethodSpec(selectById);
+            service.addMethodSpec(selectById);
         }
-        mapper.addMethodSpec(selectAll);
-        mapper.addMethodSpec(update);
-        mapper.addMethodSpec(delete);
+        service.addMethodSpec(selectAll);
+        service.addMethodSpec(update);
+        service.addMethodSpec(delete);
         if (null != deleteById) {
-            mapper.addMethodSpec(deleteById);
+            service.addMethodSpec(deleteById);
         }
 
-        javaFile.setTypeSpec(mapper);
+        javaFile.setTypeSpec(service);
         return javaFile;
     }
 }

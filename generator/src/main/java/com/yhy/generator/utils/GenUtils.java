@@ -140,7 +140,7 @@ public class GenUtils {
         return column;
     }
 
-    public static void genClassAnno(Table table, TypeSpec type) {
+    public static void genClassDoc(Table table, TypeSpec type) {
         type.addDocSpec(new DocSpec("author :", PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.GEN_AUTHOR_NAME, "颜洪毅")));
         type.addDocSpec(new DocSpec("e-mail :", PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.GEN_AUTHOR_EMAIL, "yhyzgn@gmail.com")));
         type.addDocSpec(new DocSpec("time   :", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date())));

@@ -64,6 +64,16 @@ public class DBHelper {
         return result;
     }
 
+    public int update(String sql, Object... params) throws SQLException {
+        mStatement = mConn.prepareStatement(sql);
+        if (null != params && params.length > 0) {
+            for (int i = 0; i < params.length; i++) {
+                mStatement.setObject(i + 1, params[i]);
+            }
+        }
+        return mStatement.executeUpdate();
+    }
+
     public void release() {
         try {
             if (null != mResult) {

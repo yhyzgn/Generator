@@ -79,6 +79,9 @@ public class FileWriter<T extends AbsFile> {
             case SERVICE:
                 filename = generator.getServiceFileName();
                 break;
+            case SERVICE_IMPL:
+                filename = generator.getServiceImplFileName();
+                break;
         }
         file = new File(path, filename);
         return file;
