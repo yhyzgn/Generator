@@ -1,9 +1,11 @@
 package com.yhy.generator.generator;
 
+import com.yhy.generator.api.loader.GenLoader;
 import com.yhy.generator.core.file.JavaFile;
 import com.yhy.generator.core.java.Scope;
 import com.yhy.generator.core.java.type.*;
 import com.yhy.generator.generator.base.Generator;
+import com.yhy.generator.model.GenRecord;
 import com.yhy.generator.model.table.Table;
 import com.yhy.generator.utils.GenUtils;
 
@@ -18,11 +20,11 @@ import java.util.Locale;
  * desc   :
  */
 public class MapperGenerator extends Generator<JavaFile> {
-    private String referenceModel;
+    private GenRecord genRecord;
 
-    public MapperGenerator(Table table, String referenceModel) {
+    public MapperGenerator(Table table) {
         super(table);
-        this.referenceModel = referenceModel;
+        genRecord = GenLoader.getInstance().get(table.getInfo().getName());
     }
 
     @Override
@@ -47,51 +49,56 @@ public class MapperGenerator extends Generator<JavaFile> {
         MethodSpec insert = new MethodSpec("insert");
         insert.setRetType(Integer.class);
         try {
-            insert.addParamSpec(new ParamSpec(getModelName().toLowerCase(Locale.getDefault()), Class.forName(referenceModel)));
+            insert.addParamSpec(new ParamSpec(getModelName().toLowerCase(Locale.getDefault()), Class.forName(genRecord.getModel())));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        insert.addException(Exception.class);
 
         MethodSpec selectById = null;
         if (null != table.getPrimary()) {
             selectById = new MethodSpec("selectById");
             try {
-                selectById.setRetType(Class.forName(referenceModel));
+                selectById.setRetType(Class.forName(genRecord.getModel()));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
             selectById.addParamSpec(new ParamSpec(table.getPrimary().getName(), GenUtils.mapColumnType(table.getPrimary())));
+            selectById.addException(Exception.class);
         }
 
         MethodSpec selectAll = new MethodSpec("selectAll");
         try {
-            selectAll.setRetComplex(new ComplexSpec(List.class).addType(Class.forName(referenceModel)));
+            selectAll.setRetComplex(new ComplexSpec(List.class).addType(Class.forName(genRecord.getModel())));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        selectAll.addException(Exception.class);
 
         MethodSpec update = new MethodSpec("update");
         update.setRetType(Integer.class);
         try {
-            update.addParamSpec(new ParamSpec(getModelName().toLowerCase(Locale.getDefault()), Class.forName(referenceModel)));
+            update.addParamSpec(new ParamSpec(getModelName().toLowerCase(Locale.getDefault()), Class.forName(genRecord.getModel())));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        update.addException(Exception.class);
 
         MethodSpec delete = new MethodSpec("delete");
         delete.setRetType(Integer.class);
         try {
-            delete.addParamSpec(new ParamSpec(getModelName().toLowerCase(Locale.getDefault()), Class.forName(referenceModel)));
+            delete.addParamSpec(new ParamSpec(getModelName().toLowerCase(Locale.getDefault()), Class.forName(genRecord.getModel())));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        delete.addException(Exception.class);
 
         MethodSpec deleteById = null;
-
         if (null != table.getPrimary()) {
             deleteById = new MethodSpec("deleteById");
             deleteById.setRetType(Integer.class);
             deleteById.addParamSpec(new ParamSpec(table.getPrimary().getName(), GenUtils.mapColumnType(table.getPrimary())));
+            deleteById.addException(Exception.class);
         }
 
         mapper.addMethodSpec(insert);
@@ -106,6 +113,10 @@ public class MapperGenerator extends Generator<JavaFile> {
         }
 
         javaFile.setTypeSpec(mapper);
+
+        genRecord.setMapper(getPackageName() + "." + getMapperName());
+        GenLoader.getInstance().save(genRecord);
+
         return javaFile;
     }
 }

@@ -25,6 +25,7 @@ public class MethodSpec implements AbsSpec {
     private List<ParamSpec> paramSpecList;
     private boolean hasBody;
     private List<StMentSpec> stMentSpecList;
+    private List<Class<?>> exceptionList;
 
     public MethodSpec(String name) {
         this.name = name;
@@ -33,6 +34,7 @@ public class MethodSpec implements AbsSpec {
         modifierList = new ArrayList<>();
         paramSpecList = new ArrayList<>();
         stMentSpecList = new ArrayList<>();
+        exceptionList = new ArrayList<>();
     }
 
     public String getName() {
@@ -154,6 +156,20 @@ public class MethodSpec implements AbsSpec {
         return this;
     }
 
+    public List<Class<?>> getExceptionList() {
+        return exceptionList;
+    }
+
+    public MethodSpec setExceptionList(List<Class<?>> exceptionList) {
+        this.exceptionList = exceptionList;
+        return this;
+    }
+
+    public MethodSpec addException(Class<?> exception) {
+        exceptionList.add(exception);
+        return this;
+    }
+
     private void check() {
         hasBody = null == modifierList || !modifierList.contains(Modifier.ABSTRACT);
     }
@@ -180,6 +196,9 @@ public class MethodSpec implements AbsSpec {
             for (StMentSpec stMentSpec : stMentSpecList) {
                 result.addAll(stMentSpec.getClassList());
             }
+        }
+        if (null != exceptionList && !exceptionList.isEmpty()) {
+            result.addAll(exceptionList);
         }
         return result;
     }
@@ -224,6 +243,17 @@ public class MethodSpec implements AbsSpec {
             }
         }
         sb.append(")");
+
+        if (null != exceptionList && !exceptionList.isEmpty()) {
+            sb.append(" throws ");
+            for (int i = 0; i < exceptionList.size(); i++) {
+                sb.append(exceptionList.get(i).getSimpleName());
+                if (i < exceptionList.size() - 1) {
+                    sb.append(", ");
+                }
+            }
+        }
+
         if (!hasBody) {
             sb.append(";");
         } else {

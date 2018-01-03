@@ -53,9 +53,9 @@ public class HelloController {
         return "哈哈";
     }
 
-    @RequestMapping("genXml")
+    @RequestMapping("gen")
     @ResponseBody
-    public String genXml() {
+    public String gen() {
         GeneratorHelper helper = new GeneratorHelper();
         helper.generate(tables().get(0));
         return "哈哈";

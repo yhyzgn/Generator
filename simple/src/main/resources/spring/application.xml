@@ -1,6 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!--加载属性配置文件-->
+    <context:property-placeholder ignore-unresolvable="true" location="classpath:application.properties"/>
+
+    <!--数据库连接池配置-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <!--数据库驱动-->
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <!--数据库地址-->
+        <property name="url" value="${jdbc.url}"/>
+        <!--用户名-->
+        <property name="username" value="${jdbc.username}"/>
+        <!--密码-->
+        <property name="password" value="${jdbc.password}"/>
+        <!--初始化连接池大小-->
+        <property name="initialSize" value="${jdbc.pool.init.size}"/>
+        <!--最小连接池数量-->
+        <property name="minIdle" value="${jdbc.pool.min.idle}"/>
+        <!--最大连接池数量-->
+        <property name="maxActive" value="${jdbc.pool.max.active}"/>
+        <!--获取连接等待超时时间-->
+        <property name="maxWait" value="${jdbc.max.wait}"/>
+        <!--间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒-->
+        <property name="timeBetweenEvictionRunsMillis" value="${jdbc.eviction.runs.millis}"/>
+        <!--一个连接在池中最小生存的时间，单位是毫秒-->
+        <property name="minEvictableIdleTimeMillis" value="${jdbc.min.evictable.idle.millis}"/>
+        <!--用来检测连接是否有效的sql，要求是一个查询语句-->
+        <property name="validationQuery" value="${jdbc.validation.sql}"/>
+        <!--默认为false，建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效-->
+        <property name="testWhileIdle" value="true"/>
+        <!--申请连接时执行validationQuery检测连接是否有效，默认为true，做了这个配置会降低性能-->
+        <property name="testOnBorrow" value="false"/>
+        <!--还连接时执行validationQuery检测连接是否有效，默认为false，做了这个配置会降低性能-->
+        <property name="testOnReturn" value="false"/>
+        <!--配置监控统计拦截的filters-->
+        <property name="filters" value="stat"/>
+    </bean>
+
+    <!--配置SqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--数据源-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--MyBatis配置文件-->
+        <property name="configLocation" value="classpath:mybatis/mybatis.xml"/>
+        <!--Mapper文件路径-->
+        <property name="mapperLocations" value="classpath:mapper/**/*.xml"/>
+    </bean>
+
+    <!--Mapper包扫描-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--按mapper类的包路径扫描-->
+        <property name="basePackage" value="com.yhy.generator.simple.**.mapper"/>
+        <!--可以通过上边一句的方式进行通配扫描，也可以自定义一个注解用来标识Mapper，然后在这里扫描带有这个注解的类-->
+        <!--<property name="basePackage" value="com.yhy.ssm"/>-->
+        <!--<property name="annotationClass" value="com.yhy.ssm.commons.annotation.MyBatisDao"/>-->
+        <!-- 这里只能使用sqlSessionFactoryBeanName，不能直接使用sqlSessionFactory，否则这里会先于context:property-placeholder组件执行，导致数据库配置信息加载失败 -->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
 </beans>

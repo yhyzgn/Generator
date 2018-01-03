@@ -74,12 +74,8 @@ public class ModelGenerator extends Generator<JavaFile> {
         GenRecord record = new GenRecord();
         record.setTable(table.getInfo().getName());
         record.setModel(getPackageName() + "." + getModelName());
-        new GenLoader().save(record);
+        GenLoader.getInstance().save(record);
 
         return javaFile;
-    }
-
-    public String getReferenceModel() {
-        return getPackageName() + "." + getModelName();
     }
 }

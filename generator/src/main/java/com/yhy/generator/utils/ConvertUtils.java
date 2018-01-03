@@ -43,4 +43,18 @@ public class ConvertUtils {
         matcher.appendTail(sb);
         return sb.toString();
     }
+
+    public static String caseFirstCharLower(String original) {
+        if (StringUtils.isEmpty(original)) {
+            return original;
+        }
+        Pattern linePattern = Pattern.compile("^(\\w)");
+        Matcher matcher = linePattern.matcher(original);
+        StringBuffer sb = new StringBuffer();
+        if (matcher.find()) {
+            matcher.appendReplacement(sb, matcher.group(1).toLowerCase());
+        }
+        matcher.appendTail(sb);
+        return sb.toString();
+    }
 }

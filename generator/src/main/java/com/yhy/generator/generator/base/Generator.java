@@ -25,8 +25,7 @@ public abstract class Generator<T extends AbsFile> {
 
     protected Table table;
     protected FileType fileType;
-    protected String baseDir;
-    protected String tableDir;
+    protected String dir;
     protected String packageName;
     protected String modelName;
 
@@ -37,7 +36,7 @@ public abstract class Generator<T extends AbsFile> {
             fileType = FileType.MODEL;
         }
 
-        baseDir();
+        dir();
         tableDir();
     }
 
@@ -46,22 +45,26 @@ public abstract class Generator<T extends AbsFile> {
     protected abstract T getDataFile();
 
     public T generate() {
-        return generate(null);
+        return generate(null, null);
     }
 
     public T generate(OutputStream os) {
+        return generate(os, null);
+    }
+
+    public T generate(FileWriter.OnWriteListener listener) {
+        return generate(null, listener);
+    }
+
+    public T generate(OutputStream os, FileWriter.OnWriteListener listener) {
         T dataFile = getDataFile();
         FileWriter<T> writer = new FileWriter<>(this, dataFile);
-        writer.write(os);
+        writer.write(os, listener);
         return dataFile;
     }
 
-    public String getBaseDir() {
-        return baseDir;
-    }
-
-    public String getTableDir() {
-        return tableDir;
+    public String getDir() {
+        return dir;
     }
 
     public String getRoot() {
@@ -123,7 +126,7 @@ public abstract class Generator<T extends AbsFile> {
         return fileType;
     }
 
-    private void tableDir() {
+    private String tableDir() {
         String tableDirRule = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.GEN_TABLE_DIR_RULE);
         String tableDirReplace = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.GEN_TABLE_DIR_REPLACE);
         if (StringUtils.isEmpty(tableDirRule)) {
@@ -132,37 +135,43 @@ public abstract class Generator<T extends AbsFile> {
         if (null == tableDirReplace) {
             tableDirReplace = "";
         }
-        tableDir = table.getInfo().getName().replaceAll(tableDirRule, tableDirReplace).toLowerCase(Locale.getDefault());
+        String tableDir = table.getInfo().getName().replaceAll(tableDirRule, tableDirReplace).toLowerCase(Locale.getDefault());
         tableDir = tableDir.replaceAll("_", "");
-        packageName += "." + tableDir;
+
         modelName = ConvertUtils.caseFirstCharUpper(tableDir);
-        tableDir += "/";
+
+        return tableDir;
     }
 
-    private void baseDir() {
+    private void dir() {
         switch (fileType) {
             case MODEL:
                 packageName = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_PACKAGE_MODEL);
-                baseDir = Const.DIR_BASE_JAVA + normalizeDir(packageName);
+                packageName += "." + tableDir();
+                dir = Const.DIR_BASE_JAVA + normalizeDir(packageName);
                 break;
             case MAPPER_XML:
                 String subDir = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_DIR_MAPPER_XML);
-                baseDir = Const.DIR_BASE_RESOURCES + normalizeDir(subDir);
+                dir = Const.DIR_BASE_RESOURCES + normalizeDir(subDir);
                 break;
             case MAPPER_JAVA:
                 packageName = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_PACKAGE_MAPPER);
-                baseDir = Const.DIR_BASE_JAVA + normalizeDir(packageName);
+                packageName += "." + tableDir();
+                dir = Const.DIR_BASE_JAVA + normalizeDir(packageName);
                 break;
             case SERVICE:
                 packageName = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_PACKAGE_SERVICE);
-                baseDir = Const.DIR_BASE_JAVA + normalizeDir(packageName);
+                packageName += "." + tableDir();
+                dir = Const.DIR_BASE_JAVA + normalizeDir(packageName);
                 break;
             case SERVICE_IMPL:
                 packageName = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_PACKAGE_SERVICE);
-                packageName += ".impl";
-                baseDir = Const.DIR_BASE_JAVA + normalizeDir(packageName);
+                packageName += "." + tableDir() + ".impl";
+                dir = Const.DIR_BASE_JAVA + normalizeDir(packageName);
                 break;
         }
+
+        LOGGER.info("File dir is " + dir);
     }
 
     private String normalizeDir(String subDir) {

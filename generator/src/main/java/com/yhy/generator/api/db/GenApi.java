@@ -3,6 +3,7 @@ package com.yhy.generator.api.db;
 import com.yhy.generator.api.db.base.BaseDBApi;
 import com.yhy.generator.helper.DBHelper;
 import com.yhy.generator.model.GenRecord;
+import com.yhy.generator.model.table.Table;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -17,6 +18,29 @@ import java.util.Map;
  */
 public class GenApi extends BaseDBApi {
 
+    public GenRecord get(String tableName) {
+        DBHelper helper = new DBHelper(getDriver(), getUrl(), getUsername(), getPassword());
+        try {
+            List<Map<String, Object>> result = helper.select("SELECT * FROM generator WHERE gen_table = ?", tableName);
+            if (null != result && !result.isEmpty()) {
+                Map<String, Object> genResult = result.get(0);
+                GenRecord record = new GenRecord();
+                record.setTable(tableName);
+                record.setModel(String.valueOf(genResult.get("gen_model")));
+                record.setMapper(String.valueOf(genResult.get("gen_mapper")));
+                record.setMapperXml(String.valueOf(genResult.get("gen_mapper_xml")));
+                record.setService(String.valueOf(genResult.get("gen_service")));
+                record.setServiceImpl(String.valueOf(genResult.get("gen_service_impl")));
+                return record;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            helper.release();
+        }
+        return null;
+    }
+
     public int save(GenRecord record) {
         DBHelper helper = new DBHelper(getDriver(), getUrl(), getUsername(), getPassword());
         try {
@@ -30,6 +54,8 @@ public class GenApi extends BaseDBApi {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            helper.release();
         }
         return 0;
     }
