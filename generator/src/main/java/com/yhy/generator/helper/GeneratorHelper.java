@@ -2,10 +2,8 @@ package com.yhy.generator.helper;
 
 import com.yhy.generator.api.loader.TableLoader;
 import com.yhy.generator.core.file.JavaFile;
-import com.yhy.generator.generator.MapperGenerator;
-import com.yhy.generator.generator.ModelGenerator;
-import com.yhy.generator.generator.ServiceGenerator;
-import com.yhy.generator.generator.ServiceImplGenerator;
+import com.yhy.generator.core.file.XmlFile;
+import com.yhy.generator.generator.*;
 import com.yhy.generator.model.table.Table;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +34,10 @@ public class GeneratorHelper {
 //        MapperGenerator mapperGenerator = new MapperGenerator(table);
 //        mapperGenerator.generate();
 
+//        MapperXmlGenerator mapperXmlGenerator = new MapperXmlGenerator(table);
+//        XmlFile mapperXml = mapperXmlGenerator.generate();
+//        LOGGER.info("\n=================================================\n" + mapperXml + "\n=================================================");
+
 //        ServiceGenerator serviceGenerator = new ServiceGenerator(table);
 //        serviceGenerator.generate();
 
@@ -43,31 +45,43 @@ public class GeneratorHelper {
 //        serviceImplGenerator.generate();
 
         ModelGenerator modelGenerator = new ModelGenerator(table);
-        JavaFile model = modelGenerator.generate(new FileWriter.OnWriteListener() {
+        modelGenerator.generate(new FileWriter.OnWriteListener<JavaFile>() {
             @Override
-            public void onFinish() {
+            public void onFinish(JavaFile model) {
                 System.out.println("Model 生成完成！");
+                LOGGER.info("\n=================================================\n" + model + "\n=================================================");
+
                 MapperGenerator mapperGenerator = new MapperGenerator(table);
-                JavaFile mapper = mapperGenerator.generate(new FileWriter.OnWriteListener() {
+                mapperGenerator.generate(new FileWriter.OnWriteListener<JavaFile>() {
                     @Override
-                    public void onFinish() {
+                    public void onFinish(JavaFile mapper) {
                         System.out.println("Mapper 生成完成！");
-                        ServiceGenerator serviceGenerator = new ServiceGenerator(table);
-                        JavaFile service = serviceGenerator.generate(new FileWriter.OnWriteListener() {
+                        LOGGER.info("\n=================================================\n" + mapper + "\n=================================================");
+
+                        MapperXmlGenerator mapperXmlGenerator = new MapperXmlGenerator(table);
+                        mapperXmlGenerator.generate(new FileWriter.OnWriteListener<XmlFile>() {
                             @Override
-                            public void onFinish() {
+                            public void onFinish(XmlFile mapperXml) {
+                                System.out.println("Mapper xml 生成完成！");
+                                LOGGER.info("\n=================================================\n" + mapperXml + "\n=================================================");
+                            }
+                        });
+
+                        ServiceGenerator serviceGenerator = new ServiceGenerator(table);
+                        serviceGenerator.generate(new FileWriter.OnWriteListener<JavaFile>() {
+                            @Override
+                            public void onFinish(JavaFile service) {
                                 System.out.println("Service 生成完成！");
+                                LOGGER.info("\n=================================================\n" + service + "\n=================================================");
+
                                 ServiceImplGenerator serviceImplGenerator = new ServiceImplGenerator(table);
                                 JavaFile serviceImpl = serviceImplGenerator.generate();
                                 LOGGER.info("\n=================================================\n" + serviceImpl + "\n=================================================");
                             }
                         });
-                        LOGGER.info("\n=================================================\n" + service + "\n=================================================");
                     }
                 });
-                LOGGER.info("\n=================================================\n" + mapper + "\n=================================================");
             }
         });
-        LOGGER.info("\n=================================================\n" + model + "\n=================================================");
     }
 }

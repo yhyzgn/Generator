@@ -54,7 +54,7 @@ public class FileWriter<T extends AbsFile> {
         if (os instanceof PrintStream) {
             ((PrintStream) os).print(dataFile.toString());
             if (null != listener) {
-                listener.onFinish();
+                listener.onFinish(dataFile);
             }
         } else {
             try {
@@ -71,7 +71,7 @@ public class FileWriter<T extends AbsFile> {
             } finally {
                 IOUtils.close(os);
                 if (null != listener) {
-                    listener.onFinish();
+                    listener.onFinish(dataFile);
                 }
             }
         }
@@ -89,13 +89,13 @@ public class FileWriter<T extends AbsFile> {
                 filename = generator.getModelFileName();
                 LOGGER.info("Current file is model file !");
                 break;
-            case MAPPER_XML:
-                filename = generator.getMapperXmlFileName();
-                LOGGER.info("Current file is mapper xml file !");
-                break;
             case MAPPER_JAVA:
                 filename = generator.getMapperFileName();
                 LOGGER.info("Current file is mapper java file !");
+                break;
+            case MAPPER_XML:
+                filename = generator.getMapperXmlFileName();
+                LOGGER.info("Current file is mapper xml file !");
                 break;
             case SERVICE:
                 filename = generator.getServiceFileName();
@@ -114,7 +114,7 @@ public class FileWriter<T extends AbsFile> {
         this.listener = listener;
     }
 
-    public interface OnWriteListener {
-        void onFinish();
+    public interface OnWriteListener<T extends AbsFile> {
+        void onFinish(T dataFile);
     }
 }

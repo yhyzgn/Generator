@@ -1,15 +1,14 @@
 package com.yhy.generator.utils;
 
 import com.yhy.generator.common.Const;
-import com.yhy.generator.core.java.Scope;
 import com.yhy.generator.core.java.type.DocSpec;
 import com.yhy.generator.core.java.type.TypeSpec;
 import com.yhy.generator.model.table.Column;
 import com.yhy.generator.model.table.Table;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -75,23 +74,47 @@ public class GenUtils {
             case "longtext":
                 column.setDefValue(strDef);
                 break;
-            case "datetime":
-            case "date":
-            case "time":
-                if (StringUtils.isNotEmpty(strDef)) {
-                    column.setDefValue(Date.valueOf(strDef).getTime());
-                } else {
-                    column.setDefValue(Long.valueOf(0));
-                }
-                break;
-            case "timestamp":
-                column.setDefValue(DateUtils.getTime(defValue));
-                break;
+//            case "datetime":
+//            case "date":
+//            case "time":
+//                if (StringUtils.isNotEmpty(strDef)) {
+//                    column.setDefValue(Date.valueOf(strDef).getTime());
+//                } else {
+//                    column.setDefValue(Long.valueOf(0));
+//                }
+//                break;
+//            case "timestamp":
+//                column.setDefValue(DateUtils.getTime(defValue));
+//                break;
             case "decimal":
                 column.setDefValue(new BigDecimal(defValue.toString()));
                 break;
         }
         return column;
+    }
+
+    public static String jdbcType(Column column) {
+        if (null == column) {
+            return null;
+        }
+        String dataType = column.getDataType();
+        if (StringUtils.isEmpty(dataType)) {
+            dataType = "varchar";
+        }
+        switch (dataType) {
+            case "int":
+                return "INTEGER";
+            case "text":
+            case "mediumtext":
+            case "longtext":
+                return "LONGVARCHAR";
+            case "datetime":
+            case "date":
+            case "time":
+            case "timestamp":
+                return "TIMESTAMP";
+        }
+        return dataType.toUpperCase();
     }
 
     public static Class<?> mapColumnType(Column column) {
@@ -116,11 +139,12 @@ public class GenUtils {
             case "longtext":
                 return String.class;
             case "bigint":
+                return Long.class;
             case "datetime":
             case "date":
             case "time":
             case "timestamp":
-                return Long.class;
+                return Date.class;
             case "decimal":
                 return BigDecimal.class;
         }

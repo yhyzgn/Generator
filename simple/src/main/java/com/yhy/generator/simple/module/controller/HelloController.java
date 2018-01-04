@@ -7,11 +7,16 @@ import com.yhy.generator.helper.GeneratorHelper;
 import com.yhy.generator.model.table.Column;
 import com.yhy.generator.model.table.Table;
 import com.yhy.generator.model.table.TableInfo;
+import com.yhy.generator.simple.gen.model.article.Article;
+import com.yhy.generator.simple.gen.service.article.ArticleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +29,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class HelloController {
+
+    @Resource
+    private ArticleService articleService;
 
     @RequestMapping("infos")
     @ResponseBody
@@ -59,5 +67,23 @@ public class HelloController {
         GeneratorHelper helper = new GeneratorHelper();
         helper.generate(tables().get(0));
         return "哈哈";
+    }
+
+    @RequestMapping("insert")
+    @ResponseBody
+    public Article insert() throws Exception {
+        Article article = new Article();
+        article.setId(2);
+        article.setTitle("文章标题");
+        article.setContent("文章内容");
+        article.setCreateTime(new Date(System.currentTimeMillis()));
+        article.setPrice(new BigDecimal(12.50));
+        article.setSort(1);
+        article.setUpdateTime(new Date(System.currentTimeMillis()));
+        article.setUserId(2222L);
+
+        articleService.insert(article);
+
+        return article;
     }
 }

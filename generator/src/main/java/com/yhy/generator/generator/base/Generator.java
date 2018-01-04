@@ -24,10 +24,11 @@ public abstract class Generator<T extends AbsFile> {
     protected static final Logger LOGGER = LoggerFactory.getLogger(Generator.class);
 
     protected Table table;
-    protected FileType fileType;
-    protected String dir;
-    protected String packageName;
-    protected String modelName;
+    private FileType fileType;
+    private String dir;
+    private String mapperXmlDir;
+    private String packageName;
+    private String modelName;
 
     public Generator(Table table) {
         this.table = table;
@@ -90,8 +91,8 @@ public abstract class Generator<T extends AbsFile> {
         return modelName + "Mapper.xml";
     }
 
-    public String getMapperXmlName() {
-        return modelName + "Mapper";
+    public String getMapperXmlDir() {
+        return mapperXmlDir;
     }
 
     public String getMapperFileName() {
@@ -148,38 +149,58 @@ public abstract class Generator<T extends AbsFile> {
             case MODEL:
                 packageName = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_PACKAGE_MODEL);
                 packageName += "." + tableDir();
-                dir = Const.DIR_BASE_JAVA + normalizeDir(packageName);
-                break;
-            case MAPPER_XML:
-                String subDir = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_DIR_MAPPER_XML);
-                dir = Const.DIR_BASE_RESOURCES + normalizeDir(subDir);
+                dir = Const.DIR_BASE_JAVA + packageToDir(packageName);
                 break;
             case MAPPER_JAVA:
                 packageName = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_PACKAGE_MAPPER);
                 packageName += "." + tableDir();
-                dir = Const.DIR_BASE_JAVA + normalizeDir(packageName);
+                packageName = normalizePackage(packageName);
+                dir = Const.DIR_BASE_JAVA + packageToDir(packageName);
+                break;
+            case MAPPER_XML:
+                mapperXmlDir = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_DIR_MAPPER_XML);
+                mapperXmlDir += "/" + tableDir();
+                mapperXmlDir = normalizeDir(mapperXmlDir);
+                dir = Const.DIR_BASE_RESOURCES + packageToDir(mapperXmlDir);
                 break;
             case SERVICE:
                 packageName = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_PACKAGE_SERVICE);
                 packageName += "." + tableDir();
-                dir = Const.DIR_BASE_JAVA + normalizeDir(packageName);
+                packageName = normalizePackage(packageName);
+                dir = Const.DIR_BASE_JAVA + packageToDir(packageName);
                 break;
             case SERVICE_IMPL:
                 packageName = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_SUB_PACKAGE_SERVICE);
                 packageName += "." + tableDir() + ".impl";
-                dir = Const.DIR_BASE_JAVA + normalizeDir(packageName);
+                packageName = normalizePackage(packageName);
+                dir = Const.DIR_BASE_JAVA + packageToDir(packageName);
                 break;
         }
 
         LOGGER.info("File dir is " + dir);
     }
 
-    private String normalizeDir(String subDir) {
-        if (null == subDir || StringUtils.equals("/", subDir)) {
+    private String normalizePackage(String packageName) {
+        if (null == packageName) {
+            packageName = "";
+        }
+        return packageName.replaceAll("\\.\\.+", "\\.");
+    }
+
+    private String normalizeDir(String path) {
+        if (null == path) {
+            path = "/";
+        }
+        return path.replaceAll("//+", "/");
+    }
+
+    private String packageToDir(String subDir) {
+        if (null == subDir) {
             subDir = "";
         }
         subDir = subDir.replaceAll("\\.", "/");
         subDir = subDir.replaceAll("\\\\", "/");
+        subDir = subDir.replaceAll("//+", "/");
         if (subDir.startsWith("/")) {
             subDir.substring(1);
         }

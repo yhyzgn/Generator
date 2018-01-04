@@ -89,30 +89,33 @@ public class Element {
         if (null != element.getElements() && !element.getElements().isEmpty()) {
             // 如果有子节点，就递归生成子节点
             // 头标签结束符
-            sb.append(">");
+            sb.append(">").append(System.getProperty("line.separator"));
             // 循环递归生成子节点
             for (int i = 0; i < element.getElements().size(); i++) {
                 if (i < element.getElements().size() - 1) {
-                    sb.append(System.getProperty("line.separator"));
+//                    sb.append(System.getProperty("line.separator"));
                 }
                 sb.append(createElement(element.getElements().get(i), indent + "\t"));
             }
             // 生成尾标签
             sb.append(indent).append("</").append(element.getName()).append(">");
+            if (element.hashCode() != this.hashCode()) {
+                sb.append(System.getProperty("line.separator"));
+            }
         } else if (StringUtils.isNotEmpty(element.getContent())) {
             // 如果有文本内容，就添加文本内容
             // 头标签结束符
-            sb.append(">");
+            sb.append(">").append(System.getProperty("line.separator"));
             // 生成文本
-            sb.append(System.getProperty("line.separator")).append(indent).append("\t").append(element.getContent()).append(System.getProperty("line.separator"));
+            sb.append(indent).append("\t").append(element.getContent()).append(System.getProperty("line.separator"));
             // 生成尾标签
             sb.append(indent).append("</").append(element.getName()).append(">");
+            if (element.hashCode() != this.hashCode()) {
+                sb.append(System.getProperty("line.separator"));
+            }
         } else {
             // 如果没有子节点也没有文本内容，就把当前标签设置为单标签
-            sb.append("/>");
-        }
-        if (element.hashCode() != this.hashCode()) {
-            sb.append(System.getProperty("line.separator"));
+            sb.append("/>").append(System.getProperty("line.separator"));
         }
         return sb.toString();
     }

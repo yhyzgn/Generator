@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yhy.generator.simple.gen.mapper.article.ArticleMapper">
-
+	<resultMap id="BaseResultMap" type="com.yhy.generator.simple.gen.model.article.Article">
+		<result column="id" jdbcType="INTEGER" property="id"/>
+		<result column="title" jdbcType="VARCHAR" property="title"/>
+		<result column="content" jdbcType="VARCHAR" property="content"/>
+		<result column="sort" jdbcType="INTEGER" property="sort"/>
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+		<result column="user_id" jdbcType="BIGINT" property="userId"/>
+		<result column="price" jdbcType="DECIMAL" property="price"/>
+	</resultMap>
+	<insert id="insert" parameterType="com.yhy.generator.simple.gen.model.article.Article">
+		INSERT INTO sm_article(id, title, content, sort, create_time, update_time, user_id, price) VALUES (#{id, jdbcType = INTEGER}, #{title, jdbcType = VARCHAR}, #{content, jdbcType = VARCHAR}, #{sort, jdbcType = INTEGER}, #{createTime, jdbcType = TIMESTAMP}, #{updateTime, jdbcType = TIMESTAMP}, #{userId, jdbcType = BIGINT}, #{price, jdbcType = DECIMAL})
+	</insert>
+	<select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		SELECT * FROM sm_article WHERE id = #{id, jdbcType = INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		SELECT * FROM sm_article
+	</select>
+	<update id="update" parameterType="com.yhy.generator.simple.gen.model.article.Article">
+		UPDATE sm_article SET title = #{title, jdbcType = VARCHAR}, content = #{content, jdbcType = VARCHAR}, sort = #{sort, jdbcType = INTEGER}, create_time = #{createTime, jdbcType = TIMESTAMP}, update_time = #{updateTime, jdbcType = TIMESTAMP}, user_id = #{userId, jdbcType = BIGINT}, price = #{price, jdbcType = DECIMAL} WHERE id = #{id, jdbcType = INTEGER}
+	</update>
+	<delete id="delete" parameterType="com.yhy.generator.simple.gen.model.article.Article">
+		DELETE FROM sm_article WHERE id = #{id, jdbcType = INTEGER}
+	</delete>
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		DELETE FROM sm_article WHERE id = #{id, jdbcType = INTEGER}
+	</delete>
 </mapper>

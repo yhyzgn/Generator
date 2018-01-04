@@ -1,11 +1,12 @@
 package com.yhy.generator.simple.gen.model.article;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * author : 颜洪毅
  * e-mail : yhyzgn@gmail.com
- * time   : 2018-01-04 10:27:25
+ * time   : 2018-01-04 15:26:16
  * version: 1.0.0
  * desc   : 文章表
  */
@@ -19,9 +20,9 @@ public class Article {
 	// 排序
 	private Integer sort;
 	// 创建时间
-	private Long createTime;
+	private Date createTime;
 	// 更新时间
-	private Long updateTime;
+	private Date updateTime;
 	// 用户id
 	private Long userId;
 	// 价格
@@ -59,19 +60,19 @@ public class Article {
 		this.sort = sort;
 	}
 
-	public Long getCreateTime() {
+	public Date getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(Long createTime) {
+	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 
-	public Long getUpdateTime() {
+	public Date getUpdateTime() {
 		return updateTime;
 	}
 
-	public void setUpdateTime(Long updateTime) {
+	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
 
