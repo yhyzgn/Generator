@@ -7,11 +7,14 @@ import com.yhy.generator.utils.StringUtils;
  * e-mail : yhyzgn@gmail.com
  * time   : 2018-01-04 9:19
  * version: 1.0.0
- * desc   :
+ * desc   : 伪造Class类型
  */
 public class Clazz {
+    // 类名，即全限定名
     private String name;
+    // 包名
     private String packageName;
+    // 不包含包名的类名
     private String simpleName;
 
     public Clazz(Class<?> clazz) {
@@ -24,6 +27,9 @@ public class Clazz {
             int lastIndex = this.name.lastIndexOf(".");
             packageName = this.name.substring(0, lastIndex);
             simpleName = this.name.substring(lastIndex + 1);
+        } else {
+            packageName = "";
+            simpleName = this.name;
         }
     }
 

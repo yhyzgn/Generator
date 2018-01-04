@@ -14,7 +14,7 @@ import javax.servlet.annotation.WebListener;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-26 13:16
  * version: 1.0.0
- * desc   :
+ * desc   : 初始化监听器，需要在web.xml中配置
  */
 @WebListener
 public class InitializerListener implements ServletContextListener {
@@ -28,10 +28,6 @@ public class InitializerListener implements ServletContextListener {
         }
         LOGGER.info("The initializer param 'genConfig' is " + param);
         PropUtils.load(Const.INITIALIZER_PROPERTIES, param);
-
-        InitializerHelper.getInstance()
-                .setRoot(PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_PROJECT_ROOT))
-                .setEnable(PropUtils.getBoolean(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_ENABLE, false));
     }
 
     @Override

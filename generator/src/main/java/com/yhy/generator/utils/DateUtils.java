@@ -8,7 +8,7 @@ import java.util.Date;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-27 11:19
  * version: 1.0.0
- * desc   :
+ * desc   : 日期工具
  */
 public class DateUtils {
     private DateUtils() {

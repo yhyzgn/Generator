@@ -14,14 +14,20 @@ import java.util.regex.Pattern;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-29 11:39
  * version: 1.0.0
- * desc   :
+ * desc   : 表达式类型
  */
 public class StMentSpec implements AbsSpec {
-    private static final Pattern PATTERN = Pattern.compile("(\\$[T,I,S])");
+    // 表达式占位符匹配模式，$T为类，$N为数字，$S为字符串
+    private static final Pattern PATTERN = Pattern.compile("(\\$[T,N,S])");
+    // 原始表达式，包含占位符
     private String pattStMent;
+    // 匹配占位符的参数列表
     private Object[] args;
+    // 匹配后的表达式
     private String statement;
+    // 用到的类型列表
     private List<Clazz> curClassList;
+    // 包含的表达式
     private List<StMentSpec> stMentSpecList;
 
     public StMentSpec() {
@@ -57,6 +63,7 @@ public class StMentSpec implements AbsSpec {
                 type = matcher.group(1);
                 switch (type) {
                     case "$T":
+                        // 匹配到类
                         arg = args[index++];
                         if (arg instanceof Clazz) {
                             clazz = (Clazz) arg;
@@ -64,10 +71,12 @@ public class StMentSpec implements AbsSpec {
                             matcher.appendReplacement(sb, clazz.getSimpleName());
                         }
                         break;
-                    case "$I":
+                    case "$N":
+                        // 匹配到数字
                         matcher.appendReplacement(sb, args[index++] + "");
                         break;
                     case "$S":
+                        // 匹配到字符串
                         matcher.appendReplacement(sb, "\"" + args[index++] + "\"");
                         break;
                 }
@@ -78,6 +87,11 @@ public class StMentSpec implements AbsSpec {
         return this;
     }
 
+    /**
+     * 检查占位符和匹配参数列表数量是否对应
+     *
+     * @return 是否合法
+     */
     private boolean check() {
         if (StringUtils.isEmpty(pattStMent)) {
             throw new IllegalArgumentException("The argument 'pattStMent' of constructor can not be null.");

@@ -16,7 +16,7 @@ import java.util.Locale;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-27 13:49
  * version: 1.0.0
- * desc   :
+ * desc   : 通用工具
  */
 @SuppressWarnings("ALL")
 public class GenUtils {
@@ -74,18 +74,6 @@ public class GenUtils {
             case "longtext":
                 column.setDefValue(strDef);
                 break;
-//            case "datetime":
-//            case "date":
-//            case "time":
-//                if (StringUtils.isNotEmpty(strDef)) {
-//                    column.setDefValue(Date.valueOf(strDef).getTime());
-//                } else {
-//                    column.setDefValue(Long.valueOf(0));
-//                }
-//                break;
-//            case "timestamp":
-//                column.setDefValue(DateUtils.getTime(defValue));
-//                break;
             case "decimal":
                 column.setDefValue(new BigDecimal(defValue.toString()));
                 break;

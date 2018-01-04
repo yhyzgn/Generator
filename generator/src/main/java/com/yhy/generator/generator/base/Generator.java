@@ -18,16 +18,21 @@ import java.util.Locale;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-27 15:06
  * version: 1.0.0
- * desc   :
+ * desc   : 代码生成器基类
  */
 public abstract class Generator<T extends AbsFile> {
     protected static final Logger LOGGER = LoggerFactory.getLogger(Generator.class);
-
+    // 表
     protected Table table;
+    // 生成文件类型
     private FileType fileType;
+    // 生成目录
     private String dir;
+    // 如果是mapper xml，记录mapper xml的目录
     private String mapperXmlDir;
+    // 生成java类时，记录类的包名
     private String packageName;
+    // 表对应Model的名称
     private String modelName;
 
     public Generator(Table table) {
@@ -41,8 +46,18 @@ public abstract class Generator<T extends AbsFile> {
         tableDir();
     }
 
+    /**
+     * 由子类设定文件类型
+     *
+     * @return 文件类型
+     */
     protected abstract FileType fileType();
 
+    /**
+     * 获取到具体的文件
+     *
+     * @return 具体的文件
+     */
     protected abstract T getDataFile();
 
     public T generate() {
@@ -60,14 +75,25 @@ public abstract class Generator<T extends AbsFile> {
     public T generate(OutputStream os, FileWriter.OnWriteListener listener) {
         T dataFile = getDataFile();
         FileWriter<T> writer = new FileWriter<>(this, dataFile);
+        // 生成文件
         writer.write(os, listener);
         return dataFile;
     }
 
+    /**
+     * 获取到应该生成代码的完整目录
+     *
+     * @return 完整目录
+     */
     public String getDir() {
         return dir;
     }
 
+    /**
+     * 获取到项目或者模块根目录
+     *
+     * @return 根目录
+     */
     public String getRoot() {
         String root = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_PROJECT_ROOT);
         if (StringUtils.isEmpty(root)) {
@@ -127,6 +153,11 @@ public abstract class Generator<T extends AbsFile> {
         return fileType;
     }
 
+    /**
+     * 按表名生成子目录
+     *
+     * @return 子目录名称
+     */
     private String tableDir() {
         String tableDirRule = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.GEN_TABLE_DIR_RULE);
         String tableDirReplace = PropUtils.get(Const.INITIALIZER_PROPERTIES, Const.GEN_TABLE_DIR_REPLACE);
@@ -144,6 +175,9 @@ public abstract class Generator<T extends AbsFile> {
         return tableDir;
     }
 
+    /**
+     * 生成完整的目录
+     */
     private void dir() {
         switch (fileType) {
             case MODEL:
@@ -180,6 +214,12 @@ public abstract class Generator<T extends AbsFile> {
         LOGGER.info("File dir is " + dir);
     }
 
+    /**
+     * 规范包名
+     *
+     * @param packageName 包名
+     * @return 规范后的包名
+     */
     private String normalizePackage(String packageName) {
         if (null == packageName) {
             packageName = "";
@@ -187,6 +227,12 @@ public abstract class Generator<T extends AbsFile> {
         return packageName.replaceAll("\\.\\.+", "\\.");
     }
 
+    /**
+     * 规范目录路径
+     *
+     * @param path 路径
+     * @return 规范后的路径
+     */
     private String normalizeDir(String path) {
         if (null == path) {
             path = "/";
@@ -194,22 +240,31 @@ public abstract class Generator<T extends AbsFile> {
         return path.replaceAll("//+", "/");
     }
 
-    private String packageToDir(String subDir) {
-        if (null == subDir) {
-            subDir = "";
+    /**
+     * 将包名转换为目录
+     *
+     * @param packageName 包名
+     * @return 目录
+     */
+    private String packageToDir(String packageName) {
+        if (null == packageName) {
+            packageName = "";
         }
-        subDir = subDir.replaceAll("\\.", "/");
-        subDir = subDir.replaceAll("\\\\", "/");
-        subDir = subDir.replaceAll("//+", "/");
-        if (subDir.startsWith("/")) {
-            subDir.substring(1);
+        packageName = packageName.replaceAll("\\.", "/");
+        packageName = packageName.replaceAll("\\\\", "/");
+        packageName = packageName.replaceAll("//+", "/");
+        if (packageName.startsWith("/")) {
+            packageName.substring(1);
         }
-        if (!subDir.endsWith("/")) {
-            subDir += "/";
+        if (!packageName.endsWith("/")) {
+            packageName += "/";
         }
-        return subDir;
+        return packageName;
     }
 
+    /**
+     * 各种文件类型
+     */
     public enum FileType {
         MAPPER_XML, MAPPER_JAVA, MODEL, SERVICE, SERVICE_IMPL
     }

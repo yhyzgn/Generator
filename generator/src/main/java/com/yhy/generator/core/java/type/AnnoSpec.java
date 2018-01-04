@@ -11,10 +11,12 @@ import java.util.List;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-28 15:04
  * version: 1.0.0
- * desc   :
+ * desc   : 注解类型
  */
 public class AnnoSpec implements AbsSpec {
+    // 注解类
     private Clazz type;
+    // 注解参数列表
     private String[] args;
 
     public AnnoSpec(Clazz type, String... args) {

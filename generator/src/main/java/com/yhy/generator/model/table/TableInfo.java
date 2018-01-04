@@ -5,7 +5,7 @@ package com.yhy.generator.model.table;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-27 10:22
  * version: 1.0.0
- * desc   :
+ * desc   : 表基本信息
  */
 public class TableInfo {
     private String catalog;

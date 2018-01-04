@@ -13,7 +13,7 @@ import java.util.Properties;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-26 13:36
  * version: 1.0.0
- * desc   :
+ * desc   : 属性工具
  */
 public class PropUtils {
     private static final Logger LOGGER = LoggerFactory.getLogger(PropUtils.class);

@@ -7,7 +7,7 @@ import java.util.List;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-27 14:37
  * version: 1.0.0
- * desc   :
+ * desc   : 表
  */
 public class Table {
     private TableInfo info;

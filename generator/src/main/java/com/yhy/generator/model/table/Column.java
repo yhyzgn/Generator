@@ -5,7 +5,7 @@ package com.yhy.generator.model.table;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-27 13:19
  * version: 1.0.0
- * desc   :
+ * desc   : 表的列
  */
 public class Column<T> {
     private String tableCatalog;

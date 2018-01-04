@@ -14,19 +14,30 @@ import java.util.List;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-28 14:29
  * version: 1.0.0
- * desc   :
+ * desc   : 方法类型
  */
 public class MethodSpec implements AbsSpec {
+    // 方法名称
     private String name;
+    // 注释列表
     private List<DocSpec> docSpecList;
+    // 注解列表
     private List<AnnoSpec> annoSpecList;
+    // 作用域
     private Scope scope;
+    // 修饰符列表
     private List<Modifier> modifierList;
+    // 返回值类型
     private Clazz retType;
+    // 返回值泛型
     private ComplexSpec retComplex;
+    // 参数列表
     private List<ParamSpec> paramSpecList;
+    // 是否有方法体
     private boolean hasBody;
+    // 表达式列表
     private List<StMentSpec> stMentSpecList;
+    // 异常列表
     private List<Clazz> exceptionList;
 
     public MethodSpec(String name) {
@@ -210,6 +221,7 @@ public class MethodSpec implements AbsSpec {
         StringBuilder sb = new StringBuilder();
         String lineSeparator = System.getProperty("line.separator");
 
+        // 添加注释
         if (null != docSpecList && !docSpecList.isEmpty()) {
             sb.append(indent).append("/**").append(lineSeparator);
             for (DocSpec doc : docSpecList) {
@@ -218,6 +230,7 @@ public class MethodSpec implements AbsSpec {
             sb.append(indent).append(" */").append(lineSeparator);
         }
 
+        // 添加方法名
         sb.append(indent);
         if (null != scope) {
             sb.append(scope.getScope()).append(" ");
@@ -236,6 +249,7 @@ public class MethodSpec implements AbsSpec {
         }
         sb.append(" ").append(name).append("(");
 
+        // 添加参数
         if (null != paramSpecList && !paramSpecList.isEmpty()) {
             for (int i = 0; i < paramSpecList.size(); i++) {
                 sb.append(paramSpecList.get(i).string(indent));
@@ -246,6 +260,7 @@ public class MethodSpec implements AbsSpec {
         }
         sb.append(")");
 
+        // 添加异常
         if (null != exceptionList && !exceptionList.isEmpty()) {
             sb.append(" throws ");
             for (int i = 0; i < exceptionList.size(); i++) {
@@ -256,6 +271,7 @@ public class MethodSpec implements AbsSpec {
             }
         }
 
+        // 判断是否有方法体，如果有便添加
         if (!hasBody) {
             sb.append(";");
         } else {

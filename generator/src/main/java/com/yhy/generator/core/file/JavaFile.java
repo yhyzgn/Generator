@@ -13,11 +13,14 @@ import java.util.List;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-28 14:19
  * version: 1.0.0
- * desc   :
+ * desc   : Java文件
  */
 public class JavaFile implements AbsFile {
+    // 包名
     private String packageName;
+    // 类名
     private String className;
+    // 类
     private TypeSpec typeSpec;
 
     public JavaFile(String className) {
@@ -58,8 +61,10 @@ public class JavaFile implements AbsFile {
         StringBuilder sb = new StringBuilder();
         String lineSeparator = System.getProperty("line.separator");
 
+        // 设置包名
         sb.append("package ").append(packageName).append(";").append(lineSeparator).append(lineSeparator);
 
+        // 设置导入的所有类
         List<Clazz> classList = typeSpec.getClassList();
         if (null != classList) {
             for (Clazz clazz : classList) {
@@ -69,6 +74,7 @@ public class JavaFile implements AbsFile {
             }
         }
 
+        // 设置类
         sb.append(lineSeparator).append(typeSpec.string(""));
 
         return sb.toString();

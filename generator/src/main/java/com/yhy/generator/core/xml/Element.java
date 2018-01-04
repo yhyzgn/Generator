@@ -10,12 +10,16 @@ import java.util.List;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-26 16:16
  * version: 1.0.0
- * desc   :
+ * desc   : XML节点
  */
 public class Element {
+    // 节点名称
     private String name;
+    // 属性列表
     private List<Attribute> attributes;
+    // 子节点列表
     private List<Element> elements;
+    // 节点内容
     private String content;
 
     public Element(String name) {
@@ -92,9 +96,6 @@ public class Element {
             sb.append(">").append(System.getProperty("line.separator"));
             // 循环递归生成子节点
             for (int i = 0; i < element.getElements().size(); i++) {
-                if (i < element.getElements().size() - 1) {
-//                    sb.append(System.getProperty("line.separator"));
-                }
                 sb.append(createElement(element.getElements().get(i), indent + "\t"));
             }
             // 生成尾标签

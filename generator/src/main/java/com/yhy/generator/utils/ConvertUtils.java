@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-26 14:01
  * version: 1.0.0
- * desc   :
+ * desc   : 转换工具
  */
 public class ConvertUtils {
 

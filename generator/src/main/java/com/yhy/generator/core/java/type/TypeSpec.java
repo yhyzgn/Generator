@@ -12,18 +12,28 @@ import java.util.*;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-28 14:28
  * version: 1.0.0
- * desc   :
+ * desc   : Java类的类型
  */
 public class TypeSpec implements AbsSpec {
+    // 类名
     private String name;
+    // 是否是接口
     private boolean isInter;
+    // 注释列表
     private List<DocSpec> docSpecList;
+    // 注解列表
     private List<AnnoSpec> annoSpecList;
+    // 作用域
     private Scope scope;
+    // 修饰符列表
     private List<Modifier> modifierList;
+    // 基类
     private Clazz extClass;
+    // 接口列表
     private List<Clazz> interList;
+    // 字段列表
     private List<FieldSpec> fieldSpecList;
+    // 方法列表
     private List<MethodSpec> methodSpecList;
 
     public TypeSpec(String name) {
@@ -163,6 +173,7 @@ public class TypeSpec implements AbsSpec {
 
     public List<Clazz> getClassList() {
         List<Clazz> temp = new ArrayList<>();
+        // 注解用到的类
         if (null != annoSpecList) {
             for (AnnoSpec anno : annoSpecList) {
                 if (null != anno.getClassList()) {
@@ -170,12 +181,17 @@ public class TypeSpec implements AbsSpec {
                 }
             }
         }
+
+        // 基类
         if (null != extClass) {
             temp.add(extClass);
         }
+        // 接口列表
         if (null != interList) {
             temp.addAll(interList);
         }
+
+        // 字段中用到的类
         if (null != fieldSpecList) {
             for (FieldSpec field : fieldSpecList) {
                 if (null != field.getClassList()) {
@@ -183,6 +199,8 @@ public class TypeSpec implements AbsSpec {
                 }
             }
         }
+
+        // 方法中用到的类
         if (null != methodSpecList) {
             for (MethodSpec method : methodSpecList) {
                 if (null != method.getClassList()) {
@@ -218,6 +236,7 @@ public class TypeSpec implements AbsSpec {
         StringBuilder sb = new StringBuilder();
         String lineSeparator = System.getProperty("line.separator");
 
+        // 添加注释
         if (null != docSpecList && !docSpecList.isEmpty()) {
             sb.append("/**").append(lineSeparator);
             for (DocSpec doc : docSpecList) {
@@ -225,11 +244,15 @@ public class TypeSpec implements AbsSpec {
             }
             sb.append(" */").append(lineSeparator);
         }
+
+        // 添加注解
         if (null != annoSpecList && !annoSpecList.isEmpty()) {
             for (AnnoSpec anno : annoSpecList) {
                 sb.append(anno.string(indent)).append(lineSeparator);
             }
         }
+
+        // 添加类名及其相关限定符
         sb.append(scope.getScope()).append(" ");
         if (null != modifierList && !modifierList.isEmpty()) {
             for (Modifier modifier : modifierList) {
@@ -242,6 +265,7 @@ public class TypeSpec implements AbsSpec {
             sb.append("class ");
         }
         sb.append(name).append(" ");
+        // 添加基类和接口
         if (null != extClass) {
             sb.append("extends ").append(extClass.getSimpleName()).append(" ");
         }
@@ -257,6 +281,7 @@ public class TypeSpec implements AbsSpec {
         }
         sb.append("{").append(lineSeparator);
 
+        // 添加字段
         if (null != fieldSpecList && !fieldSpecList.isEmpty()) {
             for (FieldSpec field : fieldSpecList) {
                 sb.append(field.string(indent + "\t"));
@@ -264,6 +289,7 @@ public class TypeSpec implements AbsSpec {
             sb.append(lineSeparator);
         }
 
+        // 添加方法
         if (null != methodSpecList && !methodSpecList.isEmpty()) {
             for (int i = 0; i < methodSpecList.size(); i++) {
                 sb.append(methodSpecList.get(i).string(indent + "\t")).append(lineSeparator);

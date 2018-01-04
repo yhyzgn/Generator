@@ -11,11 +11,14 @@ import java.util.List;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-28 17:19
  * version: 1.0.0
- * desc   :
+ * desc   : 复杂类型，即泛型
  */
 public class ComplexSpec implements AbsSpec {
+    // 外层类型，如：Map
     private Clazz type;
+    // 内部类型列表，如：Map<String, Object>
     private List<Clazz> typeList;
+    // 内部泛型列表，如：Map<String, List<Object>>
     private List<ComplexSpec> childList;
 
     public ComplexSpec(Clazz type) {
@@ -67,9 +70,15 @@ public class ComplexSpec implements AbsSpec {
 
     @Override
     public String string(String indent) {
-        return getAllClassString(this);
+        return getString(this);
     }
 
+    /**
+     * 递归获取所有用到的类
+     *
+     * @param type 当前泛型节点
+     * @return 所有用到的类
+     */
     private List<Clazz> getAllClass(ComplexSpec type) {
         List<Clazz> result = new ArrayList<>();
         if (null != type.getType()) {
@@ -88,7 +97,13 @@ public class ComplexSpec implements AbsSpec {
         return result;
     }
 
-    private String getAllClassString(ComplexSpec type) {
+    /**
+     * 递归将当前泛型节点序列化成字符串
+     *
+     * @param type 当前节点
+     * @return 序列化后的字符串
+     */
+    private String getString(ComplexSpec type) {
         StringBuilder sb = new StringBuilder();
         sb.append(type.getType().getSimpleName()).append("<");
         if (null != type.getTypeList() && !type.getTypeList().isEmpty()) {
@@ -101,7 +116,7 @@ public class ComplexSpec implements AbsSpec {
         }
         if (null != type.getChildList()) {
             for (ComplexSpec ct : type.getChildList()) {
-                sb.append(getAllClassString(ct));
+                sb.append(getString(ct));
             }
         }
         sb.append(">");

@@ -14,10 +14,16 @@ import java.util.Map;
  * e-mail : yhyzgn@gmail.com
  * time   : 2018-01-02 17:39
  * version: 1.0.0
- * desc   :
+ * desc   : 生成代码相关API
  */
 public class GenApi extends BaseDBApi {
 
+    /**
+     * 获取代码生成记录
+     *
+     * @param tableName 表名
+     * @return 生成记录
+     */
     public GenRecord get(String tableName) {
         DBHelper helper = new DBHelper(getDriver(), getUrl(), getUsername(), getPassword());
         try {
@@ -41,6 +47,12 @@ public class GenApi extends BaseDBApi {
         return null;
     }
 
+    /**
+     * 保存代码生成记录
+     *
+     * @param record 生成记录
+     * @return 影响行数
+     */
     public int save(GenRecord record) {
         DBHelper helper = new DBHelper(getDriver(), getUrl(), getUsername(), getPassword());
         try {

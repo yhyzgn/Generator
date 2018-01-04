@@ -14,7 +14,7 @@ import java.util.Map;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-26 16:55
  * version: 1.0.0
- * desc   :
+ * desc   : 数据库助手
  */
 public class DBHelper {
     private static final Logger LOGGER = LoggerFactory.getLogger(DBHelper.class);

@@ -1,10 +1,12 @@
 package com.yhy.generator.helper;
 
 import com.yhy.generator.api.loader.TableLoader;
+import com.yhy.generator.common.Const;
 import com.yhy.generator.core.file.JavaFile;
 import com.yhy.generator.core.file.XmlFile;
 import com.yhy.generator.generator.*;
 import com.yhy.generator.model.table.Table;
+import com.yhy.generator.utils.PropUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,21 +30,12 @@ public class GeneratorHelper {
         if (null == table) {
             return;
         }
-//        ModelGenerator modelGenerator = new ModelGenerator(table);
-//        modelGenerator.generate();
 
-//        MapperGenerator mapperGenerator = new MapperGenerator(table);
-//        mapperGenerator.generate();
-
-//        MapperXmlGenerator mapperXmlGenerator = new MapperXmlGenerator(table);
-//        XmlFile mapperXml = mapperXmlGenerator.generate();
-//        LOGGER.info("\n=================================================\n" + mapperXml + "\n=================================================");
-
-//        ServiceGenerator serviceGenerator = new ServiceGenerator(table);
-//        serviceGenerator.generate();
-
-//        ServiceImplGenerator serviceImplGenerator = new ServiceImplGenerator(table);
-//        serviceImplGenerator.generate();
+        boolean enable = PropUtils.getBoolean(Const.INITIALIZER_PROPERTIES, Const.PROP_GEN_ENABLE, false);
+        if (!enable) {
+            LOGGER.error("If you want to generate code, set 'gen.enable' as 'true' in properties file at first, please !");
+            return;
+        }
 
         ModelGenerator modelGenerator = new ModelGenerator(table);
         modelGenerator.generate(new FileWriter.OnWriteListener<JavaFile>() {

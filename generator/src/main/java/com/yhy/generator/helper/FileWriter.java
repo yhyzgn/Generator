@@ -13,7 +13,7 @@ import java.io.*;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-28 12:58
  * version: 1.0.0
- * desc   :
+ * desc   : 文件输出器
  */
 @SuppressWarnings("ALL")
 public class FileWriter<T extends AbsFile> {

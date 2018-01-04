@@ -19,10 +19,15 @@ import java.util.Map;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-26 17:49
  * version: 1.0.0
- * desc   :
+ * desc   : 系统表查询相关API
  */
 public class TableApi extends BaseDBApi {
 
+    /**
+     * 查询指定数据库中的表信息列表
+     *
+     * @return 所有表信息
+     */
     public List<TableInfo> loadTableInfoList() {
         DBHelper helper = new DBHelper(getDriver(), getUrl(), getUsername(), getPassword());
         try {
@@ -55,6 +60,12 @@ public class TableApi extends BaseDBApi {
         return null;
     }
 
+    /**
+     * 查询某指定表名的表中所有字段信息
+     *
+     * @param name 指定表名
+     * @return 所有字段信息
+     */
     public List<Column> getColumnList(String name) {
         DBHelper helper = new DBHelper(getDriver(), getUrl(), getUsername(), getPassword());
         try {

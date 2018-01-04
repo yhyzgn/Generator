@@ -13,15 +13,22 @@ import java.util.List;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-28 14:29
  * version: 1.0.0
- * desc   :
+ * desc   : 字段类型
  */
 public class FieldSpec implements AbsSpec {
+    // 字段名称
     private String name;
+    // 注释
     private DocSpec docSpec;
+    // 注解列表
     private List<AnnoSpec> annoSpecList;
+    // 作用域
     private Scope scope;
+    // 修饰符列表
     private List<Modifier> modifierList;
+    // 普通类型
     private Clazz type;
+    // 泛型
     private ComplexSpec complexSpec;
 
     public FieldSpec(String name) {

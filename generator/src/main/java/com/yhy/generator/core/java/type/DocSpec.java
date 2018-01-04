@@ -10,10 +10,12 @@ import java.util.List;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-28 14:31
  * version: 1.0.0
- * desc   :
+ * desc   : 文档注释类型
  */
 public class DocSpec implements AbsSpec {
+    // 注释类型
     private String type;
+    // 注释值
     private String value;
 
     public DocSpec(String value) {

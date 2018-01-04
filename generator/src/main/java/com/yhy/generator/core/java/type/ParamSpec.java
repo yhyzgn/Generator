@@ -11,12 +11,16 @@ import java.util.List;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-28 17:04
  * version: 1.0.0
- * desc   :
+ * desc   : 参数类型
  */
 public class ParamSpec implements AbsSpec {
+    // 参数名称
     private String name;
+    // 具体类型
     private Clazz type;
+    // 泛型
     private ComplexSpec complexSpec;
+    // 注解
     private AnnoSpec annoSpec;
 
     public ParamSpec(String name, Clazz type) {

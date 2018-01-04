@@ -11,9 +11,10 @@ import java.util.List;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-28 14:28
  * version: 1.0.0
- * desc   :
+ * desc   : 导入包类型
  */
 public class ImportSpec implements AbsSpec {
+    // 具体类
     private Clazz type;
 
     public ImportSpec(Clazz type) {

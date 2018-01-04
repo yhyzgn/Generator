@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-26 17:52
  * version: 1.0.0
- * desc   :
+ * desc   : API基类
  */
 public class BaseDBApi {
     private String driver;
@@ -31,6 +31,9 @@ public class BaseDBApi {
         subDbName();
     }
 
+    /**
+     * 冲url中获取到数据库名称
+     */
     private void subDbName() {
         if (StringUtils.isEmpty(url)) {
             return;

@@ -7,7 +7,7 @@ import java.io.Closeable;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-28 13:54
  * version: 1.0.0
- * desc   :
+ * desc   : IO工具
  */
 public class IOUtils {
     private IOUtils() {

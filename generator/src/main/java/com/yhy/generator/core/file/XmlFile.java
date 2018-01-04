@@ -11,11 +11,12 @@ import java.util.List;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-27 14:54
  * version: 1.0.0
- * desc   :
+ * desc   : Xml文件
  */
 public class XmlFile implements AbsFile {
     private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
     private static final String DOC_TYPE = "<!DOCTYPE mapper PUBLIC \"-//mybatis.org//DTD Mapper 3.0//EN\" \"http://mybatis.org/dtd/mybatis-3-mapper.dtd\">";
+    // 所有节点
     private List<Element> elementList;
 
     public XmlFile() {

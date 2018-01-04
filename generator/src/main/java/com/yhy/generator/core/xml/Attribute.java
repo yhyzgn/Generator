@@ -5,10 +5,12 @@ package com.yhy.generator.core.xml;
  * e-mail : yhyzgn@gmail.com
  * time   : 2017-12-26 16:20
  * version: 1.0.0
- * desc   :
+ * desc   : XML属性
  */
 public class Attribute {
+    // 名称
     private String name;
+    // 值
     private String value;
 
     public Attribute(String name) {

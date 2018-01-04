@@ -5,7 +5,7 @@ package com.yhy.generator.model;
  * e-mail : yhyzgn@gmail.com
  * time   : 2018-01-02 17:43
  * version: 1.0.0
- * desc   :
+ * desc   : 生成记录
  */
 public class GenRecord {
     private String table;
