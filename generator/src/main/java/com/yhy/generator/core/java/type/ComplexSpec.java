@@ -1,5 +1,6 @@
 package com.yhy.generator.core.java.type;
 
+import com.yhy.generator.core.java.Clazz;
 import com.yhy.generator.core.java.type.abs.AbsSpec;
 
 import java.util.ArrayList;
@@ -13,35 +14,35 @@ import java.util.List;
  * desc   :
  */
 public class ComplexSpec implements AbsSpec {
-    private Class<?> type;
-    private List<Class<?>> typeList;
+    private Clazz type;
+    private List<Clazz> typeList;
     private List<ComplexSpec> childList;
 
-    public ComplexSpec(Class<?> type) {
+    public ComplexSpec(Clazz type) {
         this.type = type;
         typeList = new ArrayList<>();
         childList = new ArrayList<>();
     }
 
-    public Class<?> getType() {
+    public Clazz getType() {
         return type;
     }
 
-    public ComplexSpec setType(Class<?> type) {
+    public ComplexSpec setType(Clazz type) {
         this.type = type;
         return this;
     }
 
-    public List<Class<?>> getTypeList() {
+    public List<Clazz> getTypeList() {
         return typeList;
     }
 
-    public ComplexSpec setTypeList(List<Class<?>> typeList) {
+    public ComplexSpec setTypeList(List<Clazz> typeList) {
         this.typeList = typeList;
         return this;
     }
 
-    public ComplexSpec addType(Class<?> type) {
+    public ComplexSpec addType(Clazz type) {
         typeList.add(type);
         return this;
     }
@@ -60,7 +61,7 @@ public class ComplexSpec implements AbsSpec {
         return this;
     }
 
-    public List<Class<?>> getClassList() {
+    public List<Clazz> getClassList() {
         return getAllClass(this);
     }
 
@@ -69,8 +70,8 @@ public class ComplexSpec implements AbsSpec {
         return getAllClassString(this);
     }
 
-    private List<Class<?>> getAllClass(ComplexSpec type) {
-        List<Class<?>> result = new ArrayList<>();
+    private List<Clazz> getAllClass(ComplexSpec type) {
+        List<Clazz> result = new ArrayList<>();
         if (null != type.getType()) {
             result.add(type.getType());
         }

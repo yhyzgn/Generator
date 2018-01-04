@@ -1,5 +1,6 @@
 package com.yhy.generator.core.java.type;
 
+import com.yhy.generator.core.java.Clazz;
 import com.yhy.generator.core.java.Modifier;
 import com.yhy.generator.core.java.Scope;
 import com.yhy.generator.core.java.type.abs.AbsSpec;
@@ -20,7 +21,7 @@ public class FieldSpec implements AbsSpec {
     private List<AnnoSpec> annoSpecList;
     private Scope scope;
     private List<Modifier> modifierList;
-    private Class<?> type;
+    private Clazz type;
     private ComplexSpec complexSpec;
 
     public FieldSpec(String name) {
@@ -84,11 +85,11 @@ public class FieldSpec implements AbsSpec {
         return this;
     }
 
-    public Class<?> getType() {
+    public Clazz getType() {
         return type;
     }
 
-    public FieldSpec setType(Class<?> type) {
+    public FieldSpec setType(Clazz type) {
         this.type = type;
         return this;
     }
@@ -102,8 +103,8 @@ public class FieldSpec implements AbsSpec {
         return this;
     }
 
-    public List<Class<?>> getClassList() {
-        List<Class<?>> result = new ArrayList<>();
+    public List<Clazz> getClassList() {
+        List<Clazz> result = new ArrayList<>();
         if (null != annoSpecList) {
             for (AnnoSpec anno : annoSpecList) {
                 if (null != anno.getClassList()) {

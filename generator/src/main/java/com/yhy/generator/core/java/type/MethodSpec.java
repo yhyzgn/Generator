@@ -1,8 +1,10 @@
 package com.yhy.generator.core.java.type;
 
+import com.yhy.generator.core.java.Clazz;
 import com.yhy.generator.core.java.Modifier;
 import com.yhy.generator.core.java.Scope;
 import com.yhy.generator.core.java.type.abs.AbsSpec;
+import com.yhy.generator.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +22,12 @@ public class MethodSpec implements AbsSpec {
     private List<AnnoSpec> annoSpecList;
     private Scope scope;
     private List<Modifier> modifierList;
-    private Class<?> retType;
+    private Clazz retType;
     private ComplexSpec retComplex;
     private List<ParamSpec> paramSpecList;
     private boolean hasBody;
     private List<StMentSpec> stMentSpecList;
-    private List<Class<?>> exceptionList;
+    private List<Clazz> exceptionList;
 
     public MethodSpec(String name) {
         this.name = name;
@@ -99,11 +101,11 @@ public class MethodSpec implements AbsSpec {
         return this;
     }
 
-    public Class<?> getRetType() {
+    public Clazz getRetType() {
         return retType;
     }
 
-    public MethodSpec setRetType(Class<?> retType) {
+    public MethodSpec setRetType(Clazz retType) {
         this.retType = retType;
         return this;
     }
@@ -156,16 +158,16 @@ public class MethodSpec implements AbsSpec {
         return this;
     }
 
-    public List<Class<?>> getExceptionList() {
+    public List<Clazz> getExceptionList() {
         return exceptionList;
     }
 
-    public MethodSpec setExceptionList(List<Class<?>> exceptionList) {
+    public MethodSpec setExceptionList(List<Clazz> exceptionList) {
         this.exceptionList = exceptionList;
         return this;
     }
 
-    public MethodSpec addException(Class<?> exception) {
+    public MethodSpec addException(Clazz exception) {
         exceptionList.add(exception);
         return this;
     }
@@ -175,14 +177,14 @@ public class MethodSpec implements AbsSpec {
     }
 
     @Override
-    public List<Class<?>> getClassList() {
-        List<Class<?>> result = new ArrayList<>();
+    public List<Clazz> getClassList() {
+        List<Clazz> result = new ArrayList<>();
         if (null != annoSpecList && !annoSpecList.isEmpty()) {
             for (AnnoSpec annoSpec : annoSpecList) {
                 result.addAll(annoSpec.getClassList());
             }
         }
-        if (null != retType && retType != Void.class) {
+        if (null != retType && !StringUtils.equals("Void", retType.getSimpleName())) {
             result.add(retType);
         } else if (null != retComplex) {
             result.addAll(retComplex.getClassList());
@@ -225,7 +227,7 @@ public class MethodSpec implements AbsSpec {
                 sb.append(modifier.getModifier()).append(" ");
             }
         }
-        if (null != retType && retType != Void.class) {
+        if (null != retType && !StringUtils.equals("Void", retType.getSimpleName())) {
             sb.append(retType.getSimpleName());
         } else if (null != retComplex) {
             sb.append(retComplex.string(indent));

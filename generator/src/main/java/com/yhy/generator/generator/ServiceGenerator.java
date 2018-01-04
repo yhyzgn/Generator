@@ -2,6 +2,7 @@ package com.yhy.generator.generator;
 
 import com.yhy.generator.api.loader.GenLoader;
 import com.yhy.generator.core.file.JavaFile;
+import com.yhy.generator.core.java.Clazz;
 import com.yhy.generator.core.java.Scope;
 import com.yhy.generator.core.java.type.*;
 import com.yhy.generator.generator.base.Generator;
@@ -42,58 +43,38 @@ public class ServiceGenerator extends Generator<JavaFile> {
         GenUtils.genClassDoc(table, service);
 
         MethodSpec insert = new MethodSpec("insert");
-        insert.setRetType(Integer.class);
-        try {
-            insert.addParamSpec(new ParamSpec(getModelName().toLowerCase(Locale.getDefault()), Class.forName(genRecord.getModel())));
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        insert.addException(Exception.class);
+        insert.setRetType(new Clazz(Integer.class));
+        insert.addParamSpec(new ParamSpec(getModelName().toLowerCase(Locale.getDefault()), new Clazz(genRecord.getModel())));
+        insert.addException(new Clazz(Exception.class));
 
         MethodSpec selectById = null;
         if (null != table.getPrimary()) {
             selectById = new MethodSpec("selectById");
-            try {
-                selectById.setRetType(Class.forName(genRecord.getModel()));
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-            selectById.addParamSpec(new ParamSpec(table.getPrimary().getName(), GenUtils.mapColumnType(table.getPrimary())));
-            selectById.addException(Exception.class);
+            selectById.setRetType(new Clazz(genRecord.getModel()));
+            selectById.addParamSpec(new ParamSpec(table.getPrimary().getName(), new Clazz(GenUtils.mapColumnType(table.getPrimary()))));
+            selectById.addException(new Clazz(Exception.class));
         }
 
         MethodSpec selectAll = new MethodSpec("selectAll");
-        try {
-            selectAll.setRetComplex(new ComplexSpec(List.class).addType(Class.forName(genRecord.getModel())));
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        selectAll.addException(Exception.class);
+        selectAll.setRetComplex(new ComplexSpec(new Clazz(List.class)).addType(new Clazz(genRecord.getModel())));
+        selectAll.addException(new Clazz(Exception.class));
 
         MethodSpec update = new MethodSpec("update");
-        update.setRetType(Integer.class);
-        try {
-            update.addParamSpec(new ParamSpec(getModelName().toLowerCase(Locale.getDefault()), Class.forName(genRecord.getModel())));
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        update.addException(Exception.class);
+        update.setRetType(new Clazz(Integer.class));
+        update.addParamSpec(new ParamSpec(getModelName().toLowerCase(Locale.getDefault()), new Clazz(genRecord.getModel())));
+        update.addException(new Clazz(Exception.class));
 
         MethodSpec delete = new MethodSpec("delete");
-        delete.setRetType(Integer.class);
-        try {
-            delete.addParamSpec(new ParamSpec(getModelName().toLowerCase(Locale.getDefault()), Class.forName(genRecord.getModel())));
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        delete.addException(Exception.class);
+        delete.setRetType(new Clazz(Integer.class));
+        delete.addParamSpec(new ParamSpec(getModelName().toLowerCase(Locale.getDefault()), new Clazz(genRecord.getModel())));
+        delete.addException(new Clazz(Exception.class));
 
         MethodSpec deleteById = null;
         if (null != table.getPrimary()) {
             deleteById = new MethodSpec("deleteById");
-            deleteById.setRetType(Integer.class);
-            deleteById.addParamSpec(new ParamSpec(table.getPrimary().getName(), GenUtils.mapColumnType(table.getPrimary())));
-            deleteById.addException(Exception.class);
+            deleteById.setRetType(new Clazz(Integer.class));
+            deleteById.addParamSpec(new ParamSpec(table.getPrimary().getName(), new Clazz(GenUtils.mapColumnType(table.getPrimary()))));
+            deleteById.addException(new Clazz(Exception.class));
         }
 
         service.addMethodSpec(insert);

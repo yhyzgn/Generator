@@ -2,6 +2,7 @@ package com.yhy.generator.generator;
 
 import com.yhy.generator.api.loader.GenLoader;
 import com.yhy.generator.core.file.JavaFile;
+import com.yhy.generator.core.java.Clazz;
 import com.yhy.generator.core.java.Scope;
 import com.yhy.generator.core.java.type.*;
 import com.yhy.generator.generator.base.Generator;
@@ -52,14 +53,14 @@ public class ModelGenerator extends Generator<JavaFile> {
                 field = new FieldSpec(column.getName());
                 field.setDocSpec(new DocSpec(column.getComment()));
                 field.setScope(Scope.PRIVATE);
-                field.setType(GenUtils.mapColumnType(column));
+                field.setType(new Clazz(GenUtils.mapColumnType(column)));
 
                 getter = new MethodSpec("get" + ConvertUtils.caseFirstCharUpper(field.getName()));
                 getter.setScope(Scope.PUBLIC).setRetType(field.getType());
                 getter.addStMentSpec(new StMentSpec("return " + field.getName()));
 
                 setter = new MethodSpec("set" + ConvertUtils.caseFirstCharUpper(field.getName()));
-                setter.setScope(Scope.PUBLIC).setRetType(Void.class);
+                setter.setScope(Scope.PUBLIC).setRetType(new Clazz(Void.class));
                 setter.addParamSpec(new ParamSpec(field.getName(), field.getType()));
                 setter.addStMentSpec(new StMentSpec("this." + field.getName() + " = " + field.getName()));
 

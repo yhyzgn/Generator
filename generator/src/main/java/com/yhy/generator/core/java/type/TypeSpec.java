@@ -1,5 +1,6 @@
 package com.yhy.generator.core.java.type;
 
+import com.yhy.generator.core.java.Clazz;
 import com.yhy.generator.core.java.Modifier;
 import com.yhy.generator.core.java.Scope;
 import com.yhy.generator.core.java.type.abs.AbsSpec;
@@ -20,8 +21,8 @@ public class TypeSpec implements AbsSpec {
     private List<AnnoSpec> annoSpecList;
     private Scope scope;
     private List<Modifier> modifierList;
-    private Class<?> extClass;
-    private List<Class<?>> interList;
+    private Clazz extClass;
+    private List<Clazz> interList;
     private List<FieldSpec> fieldSpecList;
     private List<MethodSpec> methodSpecList;
 
@@ -109,25 +110,25 @@ public class TypeSpec implements AbsSpec {
         return this;
     }
 
-    public Class<?> getExtClass() {
+    public Clazz getExtClass() {
         return extClass;
     }
 
-    public TypeSpec setExtClass(Class<?> extClass) {
+    public TypeSpec setExtClass(Clazz extClass) {
         this.extClass = extClass;
         return this;
     }
 
-    public List<Class<?>> getInterList() {
+    public List<Clazz> getInterList() {
         return interList;
     }
 
-    public TypeSpec setInterList(List<Class<?>> interList) {
+    public TypeSpec setInterList(List<Clazz> interList) {
         this.interList = interList;
         return this;
     }
 
-    public TypeSpec addInter(Class<?> inter) {
+    public TypeSpec addInter(Clazz inter) {
         interList.add(inter);
         return this;
     }
@@ -160,8 +161,8 @@ public class TypeSpec implements AbsSpec {
         return this;
     }
 
-    public List<Class<?>> getClassList() {
-        List<Class<?>> temp = new ArrayList<>();
+    public List<Clazz> getClassList() {
+        List<Clazz> temp = new ArrayList<>();
         if (null != annoSpecList) {
             for (AnnoSpec anno : annoSpecList) {
                 if (null != anno.getClassList()) {
@@ -191,15 +192,15 @@ public class TypeSpec implements AbsSpec {
         }
 
         // 去重并排序
-        Set<Class<?>> result = null;
+        Set<Clazz> result = null;
         if (!temp.isEmpty()) {
-            result = new TreeSet<>(new Comparator<Class<?>>() {
+            result = new TreeSet<>(new Comparator<Clazz>() {
                 @Override
-                public int compare(Class<?> o1, Class<?> o2) {
+                public int compare(Clazz o1, Clazz o2) {
                     return o1.getName().compareTo(o2.getName());
                 }
             });
-            for (Class<?> clazz : temp) {
+            for (Clazz clazz : temp) {
                 if (!result.contains(clazz)) {
                     result.add(clazz);
                 }

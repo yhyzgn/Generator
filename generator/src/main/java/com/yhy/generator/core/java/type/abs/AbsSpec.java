@@ -1,5 +1,7 @@
 package com.yhy.generator.core.java.type.abs;
 
+import com.yhy.generator.core.java.Clazz;
+
 import java.util.List;
 
 /**
@@ -11,7 +13,7 @@ import java.util.List;
  */
 public interface AbsSpec {
 
-    List<Class<?>> getClassList();
+    List<Clazz> getClassList();
 
     String string(String indent);
 }

@@ -1,12 +1,11 @@
 package com.yhy.generator.core.java.type;
 
+import com.yhy.generator.core.java.Clazz;
 import com.yhy.generator.core.java.type.abs.AbsSpec;
 import com.yhy.generator.utils.StringUtils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,7 +21,7 @@ public class StMentSpec implements AbsSpec {
     private String pattStMent;
     private Object[] args;
     private String statement;
-    private List<Class<?>> curClassList;
+    private List<Clazz> curClassList;
     private List<StMentSpec> stMentSpecList;
 
     public StMentSpec() {
@@ -52,14 +51,18 @@ public class StMentSpec implements AbsSpec {
             StringBuffer sb = new StringBuffer();
             String type;
             int index = 0;
-            Class<?> clazz;
+            Clazz clazz;
+            Object arg;
             while (matcher.find()) {
                 type = matcher.group(1);
                 switch (type) {
                     case "$T":
-                        clazz = (Class<?>) args[index++];
-                        curClassList.add(clazz);
-                        matcher.appendReplacement(sb, clazz.getSimpleName());
+                        arg = args[index++];
+                        if (arg instanceof Clazz) {
+                            clazz = (Clazz) arg;
+                            curClassList.add(clazz);
+                            matcher.appendReplacement(sb, clazz.getSimpleName());
+                        }
                         break;
                     case "$I":
                         matcher.appendReplacement(sb, args[index++] + "");
@@ -113,7 +116,7 @@ public class StMentSpec implements AbsSpec {
     }
 
     @Override
-    public List<Class<?>> getClassList() {
+    public List<Clazz> getClassList() {
         return getAllClassList(this);
     }
 
@@ -122,8 +125,8 @@ public class StMentSpec implements AbsSpec {
         return getString(this, indent);
     }
 
-    private List<Class<?>> getAllClassList(StMentSpec stMentSpec) {
-        List<Class<?>> result = new ArrayList<>();
+    private List<Clazz> getAllClassList(StMentSpec stMentSpec) {
+        List<Clazz> result = new ArrayList<>();
         if (null != stMentSpec.getStMentSpecList()) {
             for (StMentSpec st : stMentSpec.getStMentSpecList()) {
                 result.addAll(getAllClassList(st));

@@ -1,6 +1,7 @@
 package com.yhy.generator.core.file;
 
 import com.yhy.generator.core.file.abs.AbsFile;
+import com.yhy.generator.core.java.Clazz;
 import com.yhy.generator.core.java.type.ImportSpec;
 import com.yhy.generator.core.java.type.TypeSpec;
 import com.yhy.generator.utils.StringUtils;
@@ -59,10 +60,10 @@ public class JavaFile implements AbsFile {
 
         sb.append("package ").append(packageName).append(";").append(lineSeparator).append(lineSeparator);
 
-        List<Class<?>> classList = typeSpec.getClassList();
+        List<Clazz> classList = typeSpec.getClassList();
         if (null != classList) {
-            for (Class<?> clazz : classList) {
-                if (!StringUtils.equals("java.lang", clazz.getPackage().getName()) && !StringUtils.equals(packageName, clazz.getPackage().getName())) {
+            for (Clazz clazz : classList) {
+                if (!StringUtils.equals("java.lang", clazz.getPackageName()) && !StringUtils.equals(packageName, clazz.getPackageName())) {
                     sb.append(new ImportSpec(clazz).string(""));
                 }
             }

@@ -1,8 +1,8 @@
 package com.yhy.generator.core.java.type;
 
+import com.yhy.generator.core.java.Clazz;
 import com.yhy.generator.core.java.type.abs.AbsSpec;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,7 +42,7 @@ public class DocSpec implements AbsSpec {
     }
 
     @Override
-    public List<Class<?>> getClassList() {
+    public List<Clazz> getClassList() {
         return null;
     }
 

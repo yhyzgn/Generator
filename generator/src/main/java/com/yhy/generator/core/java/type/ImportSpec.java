@@ -1,5 +1,6 @@
 package com.yhy.generator.core.java.type;
 
+import com.yhy.generator.core.java.Clazz;
 import com.yhy.generator.core.java.type.abs.AbsSpec;
 
 import java.util.ArrayList;
@@ -13,16 +14,16 @@ import java.util.List;
  * desc   :
  */
 public class ImportSpec implements AbsSpec {
-    private Class<?> type;
+    private Clazz type;
 
-    public ImportSpec(Class<?> type) {
+    public ImportSpec(Clazz type) {
         this.type = type;
     }
 
     @Override
-    public List<Class<?>> getClassList() {
+    public List<Clazz> getClassList() {
         if (null != type) {
-            List<Class<?>> result = new ArrayList<>();
+            List<Clazz> result = new ArrayList<>();
             result.add(type);
             return result;
         }

@@ -2,6 +2,7 @@ package com.yhy.generator.simple.test;
 
 import com.yhy.generator.api.db.TableApi;
 import com.yhy.generator.common.Const;
+import com.yhy.generator.core.java.Clazz;
 import com.yhy.generator.core.java.Modifier;
 import com.yhy.generator.core.java.Scope;
 import com.yhy.generator.core.java.type.AnnoSpec;
@@ -97,7 +98,7 @@ public class AppTest {
         LOGGER.info("=========================================");
 
         StMentSpec stMentSpec = new StMentSpec();
-        stMentSpec.format(statement, TestUser.class, TestUser.class, 23, "张三");
+        stMentSpec.format(statement, new Clazz(TestUser.class), new Clazz(TestUser.class), 23, "张三");
         LOGGER.info(stMentSpec.toString());
         LOGGER.info("=========================================");
         StMentSpec stIf = new StMentSpec("if(null != user)");
@@ -113,19 +114,19 @@ public class AppTest {
         methodSpec
                 .setScope(Scope.PUBLIC)
                 .addModifier(Modifier.FINAL)
-                .setRetType(TestUser.class)
-                .addParamSpec(new ParamSpec("user", TestUser.class));
+                .setRetType(new Clazz(TestUser.class))
+                .addParamSpec(new ParamSpec("user", new Clazz(TestUser.class)));
 
-        ParamSpec paramSpec = new ParamSpec("test", String.class);
-        paramSpec.setAnnoSpec(new AnnoSpec(Param.class, "record"));
+        ParamSpec paramSpec = new ParamSpec("test", new Clazz(String.class));
+        paramSpec.setAnnoSpec(new AnnoSpec(new Clazz(Param.class), "record"));
 
         methodSpec.addParamSpec(paramSpec);
 
         StMentSpec stIf = new StMentSpec("if(null != user)");
-        stIf.addStMentSpec(new StMentSpec("$T.out.println(user.getName())").format(System.class));
-        stIf.addStMentSpec(new StMentSpec("$T.out.println(\"哈哈哈哈哈\")").format(System.class));
+        stIf.addStMentSpec(new StMentSpec("$T.out.println(user.getName())").format(new Clazz(System.class)));
+        stIf.addStMentSpec(new StMentSpec("$T.out.println(\"哈哈哈哈哈\")").format(new Clazz(System.class)));
         StMentSpec stElse = new StMentSpec("else");
-        stElse.addStMentSpec(new StMentSpec("$T.out.println(\"user为空\")").format(System.class));
+        stElse.addStMentSpec(new StMentSpec("$T.out.println(\"user为空\")").format(new Clazz(System.class)));
 
         methodSpec.addStMentSpec(stIf).addStMentSpec(stElse);
         methodSpec.addStMentSpec(new StMentSpec("return user"));
